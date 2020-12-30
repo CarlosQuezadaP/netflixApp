@@ -9,6 +9,7 @@ object Versions {
     const val navisafe = "2.1.0"
     const val koin = "2.1.6"
 
+    const val retrofit = "2.7.1"
 
     const val kotlin_version = "1.4.21"
     const val material = "1.2.1"

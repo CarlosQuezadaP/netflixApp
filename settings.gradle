@@ -1,2 +1,3 @@
+include ':dato'
 include ':app'
 rootProject.name = "NetflixApp"
