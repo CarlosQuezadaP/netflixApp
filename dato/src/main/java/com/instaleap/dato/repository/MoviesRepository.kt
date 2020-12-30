@@ -1,5 +1,7 @@
 package com.instaleap.dato.repository
 
-class MoviesRepository {
+import com.instaleap.dato.datasource.MovieDataSource
+
+class MoviesRepository(private val movieDataSource: MovieDataSource) {
 
 }
