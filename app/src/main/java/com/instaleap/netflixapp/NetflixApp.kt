@@ -4,6 +4,7 @@ import android.app.Application
 import com.instaleap.dato.di.dtoConverterModule
 import com.instaleap.dato.di.movieDataSourceModule
 import com.instaleap.dato.di.networkModule
+import com.instaleap.hardware.di.connectivityModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.fragment.koin.fragmentFactory
 import org.koin.core.context.startKoin
@@ -19,7 +20,8 @@ class NetflixApp: Application() {
             modules(listOf(
                 dtoConverterModule,
                 movieDataSourceModule,
-                networkModule
+                networkModule,
+                connectivityModule
             ))
         }
     }

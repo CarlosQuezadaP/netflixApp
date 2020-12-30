@@ -1,3 +1,5 @@
+include ':hardware'
+include ':domain'
 include ':dato'
 include ':app'
 rootProject.name = "NetflixApp"
