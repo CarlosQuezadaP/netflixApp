@@ -26,5 +26,10 @@ object Deps {
         const val gson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
     }
 
+    object Okhttp {
+        const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp3}"
+        const val logging = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp3}"
+    }
+
 }
 
