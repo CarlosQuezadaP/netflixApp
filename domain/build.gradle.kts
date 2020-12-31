@@ -37,5 +37,4 @@ android {
 }
 
 dependencies {
-    api(appdependencies.Deps.Koin.koin)
 }
