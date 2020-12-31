@@ -4,6 +4,15 @@ object Deps {
     const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin_version}"
     const val core_ktx = "androidx.core:core-ktx:${Versions.Core.core_ktx}"
 
+    object Coroutine {
+        const val coroutines_core =
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines_core}"
+
+        const val coroutines_android =
+            "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines_core}"
+    }
+
+
     const val appcompat = "androidx.appcompat:appcompat:${Versions.AndroidX.appcompat}"
     const val constraintlayout =
         "androidx.constraintlayout:constraintlayout:${Versions.AndroidX.constrainLayout}"
@@ -30,6 +39,7 @@ object Deps {
         const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp3}"
         const val logging = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp3}"
     }
+
 
 }
 
