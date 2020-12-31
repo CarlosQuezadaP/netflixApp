@@ -16,6 +16,7 @@
             <option value="$PROJECT_DIR$/dato" />
             <option value="$PROJECT_DIR$/domain" />
             <option value="$PROJECT_DIR$/hardware" />
+            <option value="$PROJECT_DIR$/usecases" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
