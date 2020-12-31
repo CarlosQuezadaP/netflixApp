@@ -56,6 +56,7 @@ dependencies {
     implementation(Deps.Koin.koinViewModel)
     api(project(":dato"))
     api(project(":hardware"))
+    api(project(":usecases"))
     testImplementation(Deps.junit)
     androidTestImplementation(Deps.junit2)
     androidTestImplementation(Deps.espresso)
