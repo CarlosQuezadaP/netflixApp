@@ -2,9 +2,9 @@ package com.instaleap.dato.datasource
 
 import com.instaleap.dato.IMovieApi
 import com.instaleap.dato.anticorruption.IDtoToDomainConverter
-import com.instaleap.dato.domain.GenreItemDomain
-import com.instaleap.dato.domain.MovieItemDomain
-import com.instaleap.dato.domain.TVDomain
+import com.instaleap.domain.models.GenreItemDomain
+import com.instaleap.domain.models.MovieItemDomain
+import com.instaleap.domain.models.TVDomain
 import com.instaleap.dato.dto.GenreDto
 import com.instaleap.dato.dto.MovieDto
 import com.instaleap.dato.dto.TVDto
@@ -67,7 +67,6 @@ class MovieDataSource constructor(
         }
         return genresDomain ?: throw Exception("No hay generos de series")
     }
-
 
     override suspend fun getDiscoverMovie(page: Int, idGenre: Int): List<MovieItemDomain> {
         val moviesResponse = iMovieApi.getMoviesListByGenre(idGenre, page)

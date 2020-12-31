@@ -44,5 +44,5 @@ dependencies {
     api(appdependencies.Deps.Retrofit.gson)
     api(appdependencies.Deps.Okhttp.okhttp)
     api(appdependencies.Deps.Okhttp.logging)
-    api(project(":domain"))
+    api(project(":usecases"))
 }

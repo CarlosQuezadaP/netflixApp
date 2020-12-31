@@ -1,8 +1,8 @@
 package com.instaleap.dato.anticorruption
 
-import com.instaleap.dato.domain.GenreItemDomain
-import com.instaleap.dato.domain.MovieItemDomain
-import com.instaleap.dato.domain.TVDomain
+import com.instaleap.domain.models.GenreItemDomain
+import com.instaleap.domain.models.MovieItemDomain
+import com.instaleap.domain.models.TVDomain
 import com.instaleap.dato.dto.GenreDto
 import com.instaleap.dato.dto.MovieDto
 import com.instaleap.dato.dto.TVDto
