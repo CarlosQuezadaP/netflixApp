@@ -1,4 +1,4 @@
-package com.instaleap.dato.domain
+package com.instaleap.domain.models
 
 data class TVDomain(
     val backdrop_path: String,

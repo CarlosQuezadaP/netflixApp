@@ -1,4 +1,4 @@
-package com.instaleap.dato.domain
+package com.instaleap.domain.models
 
 data class MovieItemDomain(
     val id: Int,
