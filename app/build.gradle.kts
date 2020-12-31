@@ -54,6 +54,8 @@ dependencies {
     implementation(Deps.Koin.koinFragment)
     implementation(Deps.Koin.koinScope)
     implementation(Deps.Koin.koinViewModel)
+    implementation(Deps.Coroutine.coroutines_android)
+    implementation(Deps.Coroutine.coroutines_core)
     api(project(":dato"))
     api(project(":hardware"))
     api(project(":usecases"))
