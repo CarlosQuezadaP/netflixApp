@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">NetflixApp</string>
+    <string name="app_name">Netflix App</string>
+    <string name="mail_input">Email or phone number</string>
+    <string name="_input">Password</string>
+    <string name="need_help">Need help?</string>
+    <string name="new_netflix_sign_up">New to Netflix? Sign up now.</string>
+    <string name="sign_in">Sign in</string>
+    <string name="home_btn">Home</string>
+    <string name="search_btn">Search</string>
+    <string name="coming_soon_btn">Coming Soon</string>
+    <string name="downloads_btn">Downloads</string>
+    <string name="more_btn">More</string>
+    <string name="toolbar_tvshows">Tv Shows</string>
+    <string name="toolbar_movies">Movies</string>
+    <string name="home_my_list">Home</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
