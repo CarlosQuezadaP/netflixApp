@@ -1,7 +1,14 @@
 package com.instaleap.netflixapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
+import com.instaleap.netflixapp.databinding.ActivityHomePageBinding
 import com.instaleap.netflixapp.viewmodels.UseCasesViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -10,38 +17,52 @@ class HomePageActivity : AppCompatActivity() {
 
 
     private val useCasesViewModel: UseCasesViewModel by viewModel()
+    lateinit var homePageBinding: ActivityHomePageBinding
+
+    private val navController: NavController by lazy { findNavController(R.id.fragment_nav_host) }
+
+    private val appBarConfiguration: AppBarConfiguration by lazy {
+        AppBarConfiguration.Builder(
+            setOf(
+                R.id.homeFragment,
+                R.id.fragmentMovies,
+                R.id.fragmentSeries,
+            )
+        ).build()
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        homePageBinding = ActivityHomePageBinding.inflate(layoutInflater)
+        setContentView(homePageBinding.root)
+        setSupportActionBar(tlb_main)
 
-        setNavigation()
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        button_navigation.setupWithNavController(navController)
 
-        getMovies()
-    }
 
-    private fun setNavigation() {
-        bottom_navigation.setOnNavigationItemReselectedListener {
-            when (it.itemId) {
-                R.id.page_1 -> {
-
-                }
-                R.id.page_2 -> {
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.homeFragment -> {
 
                 }
-                R.id.page_3 -> {
+                R.id.fragmentMovies -> {
 
                 }
-                R.id.page_4 -> {
+                R.id.fragmentSeries -> {
 
                 }
-                R.id.page_5 -> {
-
-                }
+                else -> button_navigation.visibility = View.GONE
             }
         }
+
     }
 
+    override fun onResume() {
+        super.onResume()
+        getMovies()
+    }
 
     private fun getMovies() {
         useCasesViewModel.movieList.observe(this, {
