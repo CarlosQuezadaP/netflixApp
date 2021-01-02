@@ -40,6 +40,21 @@ object Deps {
         const val logging = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp3}"
     }
 
+    object Core {
+        const val appcompat = "androidx.appcompat:appcompat:${Versions.appCompatX}"
+        const val constraintlayout =
+            "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
+        const val coreKtx = "androidx.core:core-ktx:${Versions.appCoreX}"
+        const val navigationFragmentKtx =
+            "androidx.navigation:navigation-fragment-ktx:${Versions.Navigation.fragment}"
+        const val navigationUiKtx =
+            "androidx.navigation:navigation-ui-ktx:${Versions.Navigation.ui}"
+
+        const val viewPager2 = "androidx.viewpager2:viewpager2:${Versions.viewPager2}"
+        const val swipeRefreshLayout =
+            "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefresh}"
+        const val paging = "androidx.paging:paging-runtime-ktx:${Versions.paging}"
+    }
 
 }
 

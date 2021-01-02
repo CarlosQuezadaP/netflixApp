@@ -20,6 +20,11 @@ object Versions {
         const val core_ktx = "1.3.2"
     }
 
+    object Navigation {
+        const val fragment = "2.2.0-rc02"
+        const val ui = "2.2.0-rc02"
+    }
+
     object AndroidX {
         const val appcompat = "1.2.0"
         const val constrainLayout = "2.0.4"
@@ -40,6 +45,13 @@ object Versions {
         const val versionCode = 1
         const val versionName = "1.0"
     }
+
+    const val appCompatX = "1.1.0"
+    const val appCoreX = "1.1.0"
+    const val constraintLayout = "1.1.3"
+    const val viewPager2 = "1.0.0"
+    const val swipeRefresh = "1.0.0"
+    const val paging = "2.1.1"
 
 
 }

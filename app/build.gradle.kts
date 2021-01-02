@@ -45,6 +45,8 @@ android {
 }
 
 dependencies {
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:${rootProject.extra["kotlin_version"]}")
+
     implementation(Deps.kotlin)
     implementation(Deps.core_ktx)
     implementation(Deps.appcompat)
@@ -56,10 +58,18 @@ dependencies {
     implementation(Deps.Koin.koinViewModel)
     implementation(Deps.Coroutine.coroutines_android)
     implementation(Deps.Coroutine.coroutines_core)
+
+    implementation(Deps.Core.navigationFragmentKtx)
+    implementation(Deps.Core.navigationUiKtx)
+    implementation(Deps.Core.constraintlayout)
+
     api(project(":dato"))
     api(project(":hardware"))
     api(project(":usecases"))
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+
     testImplementation(Deps.junit)
+
     androidTestImplementation(Deps.junit2)
     androidTestImplementation(Deps.espresso)
 }
