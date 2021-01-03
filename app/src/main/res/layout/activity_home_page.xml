@@ -13,18 +13,7 @@
         android:layout_height="match_parent"
         tools:context=".HomePageActivity">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/tlb_main"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:titleTextColor="@color/white" />
-
-        </com.google.android.material.appbar.AppBarLayout>
 
         <fragment
             android:id="@+id/fragment_nav_host"
