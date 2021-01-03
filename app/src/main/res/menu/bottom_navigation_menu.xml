@@ -1,28 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/page_1"
+        android:id="@+id/homeFragment"
         android:enabled="true"
         android:icon="@drawable/ic_home"
         android:title="@string/home_btn" />
     <item
-        android:id="@+id/page_2"
+        android:id="@+id/fragmentMovies"
         android:enabled="true"
-        android:icon="@drawable/ic_search"
-        android:title="@string/search_btn" />
+        android:icon="@drawable/round_ondemand_video_white_48dp"
+        android:title="@string/toolbar_movies" />
     <item
-        android:id="@+id/page_3"
+        android:id="@+id/fragmentSeries"
         android:enabled="true"
-        android:icon="@drawable/ic_coming_soon"
-        android:title="@string/coming_soon_btn" />
-    <item
-        android:id="@+id/page_4"
-        android:enabled="true"
-        android:icon="@drawable/ic_downloads"
-        android:title="@string/downloads_btn" />
-    <item
-        android:id="@+id/page_5"
-        android:enabled="true"
-        android:icon="@drawable/ic_more"
-        android:title="@string/more_btn" />
+        android:icon="@drawable/baseline_live_tv_white_48dp"
+        android:title="@string/toolbar_tvshows" />
+
 </menu>
