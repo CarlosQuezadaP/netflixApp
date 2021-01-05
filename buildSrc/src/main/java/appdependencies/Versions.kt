@@ -52,6 +52,7 @@ object Versions {
     const val viewPager2 = "1.0.0"
     const val swipeRefresh = "1.0.0"
     const val paging = "2.1.1"
+    const val glide = "4.8.0"
 
 
 }

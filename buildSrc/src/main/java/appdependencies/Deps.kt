@@ -56,5 +56,9 @@ object Deps {
         const val paging = "androidx.paging:paging-runtime-ktx:${Versions.paging}"
     }
 
+    const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
+    const val glide_annotationProcessor = "com.github.bumptech.glide:compiler:${Versions.glide}"
+
+
 }
 
