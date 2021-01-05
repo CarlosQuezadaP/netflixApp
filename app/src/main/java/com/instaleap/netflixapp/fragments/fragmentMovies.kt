@@ -11,7 +11,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.instaleap.netflixapp.INavigateToList
-import com.instaleap.netflixapp.ListActivity
+import com.instaleap.netflixapp.activities.ListActivity
 import com.instaleap.netflixapp.R
 import com.instaleap.netflixapp.adapters.MoviesAdapter
 import com.instaleap.netflixapp.databinding.FragmentMoviesBinding

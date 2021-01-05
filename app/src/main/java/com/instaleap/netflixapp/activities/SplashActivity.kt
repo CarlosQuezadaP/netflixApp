@@ -1,8 +1,9 @@
-package com.instaleap.netflixapp
+package com.instaleap.netflixapp.activities
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.instaleap.netflixapp.R
 import kotlinx.coroutines.*
 
 class SplashActivity : AppCompatActivity() {
@@ -14,6 +15,7 @@ class SplashActivity : AppCompatActivity() {
             delay(2000)
             withContext(Dispatchers.Main) {
                 startActivity(Intent(this@SplashActivity, HomePageActivity::class.java))
+                finish()
             }
         }
 

@@ -1,9 +1,10 @@
-package com.instaleap.netflixapp
+package com.instaleap.netflixapp.activities
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.instaleap.domain.models.GenreItemDomain
+import com.instaleap.netflixapp.ISelectGenre
 import com.instaleap.netflixapp.adapters.ListActivityAdapter
 import com.instaleap.netflixapp.databinding.ActivityListBinding
 import com.instaleap.netflixapp.viewmodels.GenresMovieUseCaseViewModel

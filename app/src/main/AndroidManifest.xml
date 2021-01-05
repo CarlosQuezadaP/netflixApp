@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".SplashActivity">
+        <activity android:name=".activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,9 +23,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ListActivity"
+            android:name=".activities.ListActivity"
             android:theme="@style/Theme.Transparent" />
-        <activity android:name=".HomePageActivity" />
+        <activity android:name=".activities.HomePageActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

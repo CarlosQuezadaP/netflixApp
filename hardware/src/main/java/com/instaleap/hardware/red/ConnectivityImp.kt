@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.instaleap.hardware.red
 
 import android.content.Context
