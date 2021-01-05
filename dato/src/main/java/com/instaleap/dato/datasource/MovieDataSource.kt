@@ -2,13 +2,12 @@ package com.instaleap.dato.datasource
 
 import com.instaleap.dato.IMovieApi
 import com.instaleap.dato.anticorruption.IDtoToDomainConverter
-import com.instaleap.domain.models.GenreItemDomain
-import com.instaleap.domain.models.MovieItemDomain
-import com.instaleap.domain.models.TVDomain
 import com.instaleap.dato.dto.GenreDto
 import com.instaleap.dato.dto.MovieDto
 import com.instaleap.dato.dto.TVDto
-import java.lang.Exception
+import com.instaleap.domain.models.GenreItemDomain
+import com.instaleap.domain.models.MovieItemDomain
+import com.instaleap.domain.models.TVDomain
 
 class MovieDataSource constructor(
     private val iMovieApi: IMovieApi,
