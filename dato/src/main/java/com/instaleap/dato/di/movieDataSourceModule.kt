@@ -5,5 +5,5 @@ import com.instaleap.dato.datasource.MovieDataSource
 import org.koin.dsl.module
 
 val movieDataSourceModule = module {
-    factory<IMovieDataSource> { MovieDataSource(get(), get()) }
+    single<IMovieDataSource> { MovieDataSource(get(), get()) }
 }
