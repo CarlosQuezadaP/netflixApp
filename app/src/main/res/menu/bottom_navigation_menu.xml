@@ -9,11 +9,11 @@
         android:id="@+id/fragmentMovies"
         android:enabled="true"
         android:icon="@drawable/round_ondemand_video_white_48dp"
-        android:title="@string/toolbar_movies" />
+        android:title="Películas" />
     <item
         android:id="@+id/fragmentSeries"
         android:enabled="true"
         android:icon="@drawable/baseline_live_tv_white_48dp"
-        android:title="@string/toolbar_tvshows" />
+        android:title="Series" />
 
 </menu>

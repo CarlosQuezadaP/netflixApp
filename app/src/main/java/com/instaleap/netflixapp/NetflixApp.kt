@@ -6,7 +6,7 @@ import com.instaleap.dato.di.movieDataSourceModule
 import com.instaleap.dato.di.movieRepositoryModule
 import com.instaleap.dato.di.networkModule
 import com.instaleap.hardware.di.connectivityModule
-import com.instaleap.netflixapp.di.viewModelModule
+import com.instaleap.netflixapp.di.homeViewModelModule
 import com.instaleap.usecases.di.usescase_module
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.fragment.koin.fragmentFactory
@@ -27,7 +27,7 @@ class NetflixApp : Application() {
                     networkModule,
                     connectivityModule,
                     usescase_module,
-                    viewModelModule,
+                    homeViewModelModule,
                     movieRepositoryModule
                 )
             )
