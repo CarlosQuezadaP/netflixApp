@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/movie_item_layout">
+            tools:listitem="@layout/section_item_layout">
 
         </androidx.recyclerview.widget.RecyclerView>
 

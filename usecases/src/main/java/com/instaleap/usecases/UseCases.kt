@@ -59,6 +59,14 @@ class GetAllMoviesGenres(private val iMovieRepository: IMovieRepository) :
     }
 }
 
+class GetMoviesByGenreUseCase(private val iMovieRepository: IMovieRepository) : IGetMoviesByGenre {
+    override suspend fun invoke(page: Int, genreID: Int): List<MovieItemDomain> {
+        if (genreID != 0) {
+            return iMovieRepository.getMoviesByGenre(page, genreID)
+        }
+        return iMovieRepository.getMoviesWithoutGenre(page)
+    }
+}
 
 
 interface IGetAllModelsSections {
@@ -69,6 +77,6 @@ interface IGetMoviesGenres {
     suspend fun invoke(): List<GenreItemDomain>
 }
 
-interface IGetMoviesModelsSections {
-    suspend fun invoke(page: Int): List<SectionModel>
+interface IGetMoviesByGenre {
+    suspend fun invoke(page: Int, genreID: Int): List<MovieItemDomain>
 }

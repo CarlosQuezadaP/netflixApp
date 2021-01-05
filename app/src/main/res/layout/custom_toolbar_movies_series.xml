@@ -43,7 +43,6 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/adamina_regular"
                 android:gravity="center"
-                android:onClick="@{() -> onclick.onClick(type)}"
                 android:textColor="@color/white"
                 android:textSize="17sp"
                 android:textStyle="bold"

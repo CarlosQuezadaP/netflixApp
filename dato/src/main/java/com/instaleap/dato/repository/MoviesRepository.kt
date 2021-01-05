@@ -12,6 +12,14 @@ class MoviesRepository(private val iMovieDataSource: IMovieDataSource) :
     override suspend fun getPopularMovies(page: Int): List<MovieItemDomain> =
         iMovieDataSource.getPopularMovies(page)
 
+    override suspend fun getMoviesByGenre(page: Int, genreID: Int): List<MovieItemDomain> {
+        return iMovieDataSource.getDiscoverMovie(page, genreID)
+    }
+
+    override suspend fun getMoviesWithoutGenre(page: Int): List<MovieItemDomain> {
+        return iMovieDataSource.getDiscoverMovieWithoutGenre(page)
+    }
+
     override suspend fun getGenresMovies(): List<GenreItemDomain> {
         return iMovieDataSource.getGenresMovies()
     }

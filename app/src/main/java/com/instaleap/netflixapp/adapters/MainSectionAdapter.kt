@@ -6,8 +6,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.instaleap.domain.SectionModel
 import com.instaleap.netflixapp.R
-import com.instaleap.netflixapp.adapters.diff.SectionItemDiffCallback
-import com.instaleap.netflixapp.adapters.viewholder.SectionViewHolder
+import com.instaleap.netflixapp.diff.SectionItemDiffCallback
+import com.instaleap.netflixapp.viewholder.SectionViewHolder
 import com.instaleap.netflixapp.databinding.SectionRowBinding
 
 class MainSectionAdapter :

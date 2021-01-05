@@ -2,28 +2,24 @@ package com.instaleap.netflixapp.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.instaleap.domain.SectionModel
-import com.instaleap.usecases.IGetAllModelsSections
+import com.instaleap.domain.models.MovieItemDomain
+import com.instaleap.usecases.IGetMoviesByGenre
 import kotlinx.coroutines.*
 
-class MovieUseCase(
-    private val iGetAllModelsSections: IGetAllModelsSections
+class MovieByGenreViewModel(
+    private val iGetMoviesByGenre: IGetMoviesByGenre
 ) : ViewModel() {
 
-    var sections = MutableLiveData<List<SectionModel>>()
+    var movies = MutableLiveData<List<MovieItemDomain>>()
     private var job: Job? = null
     private var coroutineScope = CoroutineScope(Dispatchers.IO)
 
-    init {
-        getSections()
-    }
 
-
-    private fun getSections() {
+    fun getMovies(page: Int, genreId: Int = 0) {
         job = coroutineScope.launch {
-            val response = iGetAllModelsSections.invoke(1)
+            val response = iGetMoviesByGenre.invoke(page, genreId)
             withContext(Dispatchers.Main) {
-                sections.value = response
+                movies.value = response
             }
         }
     }

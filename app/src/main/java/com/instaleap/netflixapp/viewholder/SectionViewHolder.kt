@@ -1,4 +1,4 @@
-package com.instaleap.netflixapp.adapters.viewholder
+package com.instaleap.netflixapp.viewholder
 
 import androidx.recyclerview.widget.RecyclerView
 import com.instaleap.domain.SectionModel
@@ -14,8 +14,6 @@ class SectionViewHolder(private val sectionRowBinding: SectionRowBinding) :
         childSectionAdapter.submitList(section.characters)
         sectionRowBinding.recyclerViewChild.adapter = childSectionAdapter
     }
-
-
 }
 
 

@@ -7,12 +7,23 @@ import com.bumptech.glide.request.RequestOptions
 import com.instaleap.netflixapp.BuildConfig
 
 
-@BindingAdapter("profileImage")
-fun loadImage(view: ImageView, imageUrl: String?) {
+@BindingAdapter("circleImage")
+fun loadImageCircle(view: ImageView, imageUrl: String?) {
 
     val url = "${BuildConfig.IMAGES_URL}$imageUrl"
 
     Glide.with(view.context)
         .load(url).apply(RequestOptions().circleCrop())
+        .into(view)
+}
+
+
+@BindingAdapter("image")
+fun loadImage(view: ImageView, imageUrl: String?) {
+
+    val url = "${BuildConfig.IMAGES_URL}$imageUrl"
+
+    Glide.with(view.context)
+        .load(url).apply(RequestOptions())
         .into(view)
 }

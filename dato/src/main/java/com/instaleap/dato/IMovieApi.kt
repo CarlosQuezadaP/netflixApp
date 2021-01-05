@@ -30,6 +30,11 @@ interface IMovieApi {
         @Query("page") page: Int = 1,
     ): Response<DiscoverMovieResponse>
 
+    @GET("discover/movie")
+    suspend fun getMoviesListWitouthGenre(
+        @Query("page") page: Int = 1,
+    ): Response<DiscoverMovieResponse>
+
 
     @GET("discover/tv")
     suspend fun getTvListByGenre(

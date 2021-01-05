@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.ListAdapter
 import com.instaleap.domain.models.GenreItemDomain
 import com.instaleap.netflixapp.ISelectGenre
 import com.instaleap.netflixapp.R
-import com.instaleap.netflixapp.adapters.diff.GenresDiffCallback
-import com.instaleap.netflixapp.adapters.viewholder.GenresViewHolder
+import com.instaleap.netflixapp.diff.GenresDiffCallback
+import com.instaleap.netflixapp.viewholder.GenresViewHolder
 import com.instaleap.netflixapp.databinding.GenresItemLayoutBinding
 
 class ListActivityAdapter(private val iSelectGenre: ISelectGenre) :

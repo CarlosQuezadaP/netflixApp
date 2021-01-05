@@ -1,4 +1,4 @@
-package com.instaleap.netflixapp.fragments.mainMenu
+package com.instaleap.netflixapp.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

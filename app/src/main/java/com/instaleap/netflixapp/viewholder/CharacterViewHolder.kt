@@ -1,11 +1,10 @@
-package com.instaleap.netflixapp.adapters.viewholder
+package com.instaleap.netflixapp.viewholder
 
 import androidx.recyclerview.widget.RecyclerView
 import com.instaleap.domain.CharacterModel
-import com.instaleap.domain.SectionModel
-import com.instaleap.netflixapp.databinding.MovieItemLayoutBinding
+import com.instaleap.netflixapp.databinding.SectionItemLayoutBinding
 
-class CharacterViewHolder(private val movieItemLayoutBinding: MovieItemLayoutBinding) :
+class CharacterViewHolder(private val movieItemLayoutBinding: SectionItemLayoutBinding) :
     RecyclerView.ViewHolder(movieItemLayoutBinding.root) {
 
 

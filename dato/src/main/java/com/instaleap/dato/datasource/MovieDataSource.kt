@@ -80,6 +80,19 @@ class MovieDataSource constructor(
         return moviesDomain ?: throw Exception("No hay peliculas")
     }
 
+    override suspend fun getDiscoverMovieWithoutGenre(page: Int): List<MovieItemDomain> {
+        val moviesResponse = iMovieApi.getMoviesListWitouthGenre(page)
+        val movies: List<MovieDto>?
+        var moviesDomain: List<MovieItemDomain>? = null
+        if (moviesResponse.isSuccessful) {
+            movies = moviesResponse.body()?.results
+            moviesDomain = movies?.map {
+                converter.convertDtoToDomain(it)
+            }
+        }
+        return moviesDomain ?: throw Exception("No hay peliculas")
+    }
+
     override suspend fun getDiscoverTv(page: Int, idGenre: Int): List<TVDomain> {
         val tvsResponse = iMovieApi.getTvListByGenre(idGenre, page)
         val tvs: List<TVDto>?

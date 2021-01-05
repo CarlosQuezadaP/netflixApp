@@ -1,4 +1,4 @@
-package com.instaleap.netflixapp.fragments.mainMenu
+package com.instaleap.netflixapp.fragments
 
 import android.app.Activity.RESULT_CANCELED
 import android.app.Activity.RESULT_OK
@@ -13,9 +13,12 @@ import androidx.fragment.app.Fragment
 import com.instaleap.netflixapp.INavigateToList
 import com.instaleap.netflixapp.ListActivity
 import com.instaleap.netflixapp.R
+import com.instaleap.netflixapp.adapters.MoviesAdapter
 import com.instaleap.netflixapp.databinding.FragmentMoviesBinding
+import com.instaleap.netflixapp.viewmodels.MovieByGenreViewModel
 import kotlinx.android.synthetic.main.custom_toolbar_movies_series.view.*
 import kotlinx.android.synthetic.main.fragment_movies.view.*
+import org.koin.android.ext.android.inject
 
 private const val REQUEST_CODE = 222
 private const val DATA_ID = "ID"
@@ -24,10 +27,13 @@ private const val TYPE = "TYPE"
 
 class fragmentMovies : Fragment(), INavigateToList {
 
+    val movieByGenreViewModel: MovieByGenreViewModel by inject()
     lateinit var fragmentMoviesBinding: FragmentMoviesBinding
     lateinit var mRootView: View
     private var genreId = 0
     private var genreName = ""
+    lateinit var moviesAdapter: MoviesAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,9 +51,23 @@ class fragmentMovies : Fragment(), INavigateToList {
 
 
         mRootView.include_toolbar.textView_tipe_text.text = "Películas"
+        setupAdapter()
+        getMovies()
 
+        movieByGenreViewModel.getMovies(1)
 
         return mRootView
+    }
+
+    private fun setupAdapter() {
+        moviesAdapter = MoviesAdapter()
+        fragmentMoviesBinding.recyclerViewMovies.adapter = moviesAdapter
+    }
+
+    private fun getMovies() {
+        movieByGenreViewModel.movies.observe(requireActivity(), {
+            moviesAdapter.submitList(it)
+        })
     }
 
 
@@ -63,12 +83,11 @@ class fragmentMovies : Fragment(), INavigateToList {
                 genreId = data?.getIntExtra(DATA_ID, 0) ?: 0
                 genreName = data?.getStringExtra(DATA_NAME) ?: ""
                 updateGenreName(genreName)
+                movieByGenreViewModel.getMovies(1, genreId)
             } else if (resultCode == RESULT_CANCELED) {
                 Toast.makeText(requireContext(), "Acción cancelada!", Toast.LENGTH_LONG).show()
             }
-
         }
-
     }
 
     private fun updateGenreName(genreName: String) {

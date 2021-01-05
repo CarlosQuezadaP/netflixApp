@@ -6,9 +6,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.instaleap.domain.CharacterModel
 import com.instaleap.netflixapp.R
-import com.instaleap.netflixapp.adapters.diff.CharactersItemDiffCallback
-import com.instaleap.netflixapp.adapters.viewholder.CharacterViewHolder
-import com.instaleap.netflixapp.databinding.MovieItemLayoutBinding
+import com.instaleap.netflixapp.diff.CharactersItemDiffCallback
+import com.instaleap.netflixapp.viewholder.CharacterViewHolder
+import com.instaleap.netflixapp.databinding.SectionItemLayoutBinding
 
 class ChildSectionAdapter :
     ListAdapter<CharacterModel, CharacterViewHolder>(CharactersItemDiffCallback()) {
@@ -17,10 +17,10 @@ class ChildSectionAdapter :
 
         val layout = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
-            R.layout.movie_item_layout,
+            R.layout.section_item_layout,
             parent,
             false
-        ) as MovieItemLayoutBinding
+        ) as SectionItemLayoutBinding
 
         return CharacterViewHolder(layout)
 

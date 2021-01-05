@@ -1,4 +1,4 @@
-package com.instaleap.netflixapp.adapters.viewholder
+package com.instaleap.netflixapp.viewholder
 
 import androidx.recyclerview.widget.RecyclerView
 import com.instaleap.domain.models.GenreItemDomain
