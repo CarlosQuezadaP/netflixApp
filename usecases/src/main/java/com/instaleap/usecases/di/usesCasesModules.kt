@@ -1,9 +1,12 @@
 package com.instaleap.usecases.di
 
-import com.instaleap.usecases.GetAllMoviesUseCase
-import com.instaleap.usecases.IGetAllMoviesUseCase
+import com.instaleap.usecases.GetAllModelsSectionsUseCase
+import com.instaleap.usecases.GetAllMoviesGenres
+import com.instaleap.usecases.IGetAllModelsSections
+import com.instaleap.usecases.IGetMoviesGenres
 import org.koin.dsl.module
 
 val usescase_module = module {
-    single<IGetAllMoviesUseCase> { GetAllMoviesUseCase(get()) }
+    single<IGetAllModelsSections> { GetAllModelsSectionsUseCase(get()) }
+    single<IGetMoviesGenres> { GetAllMoviesGenres(get()) }
 }
