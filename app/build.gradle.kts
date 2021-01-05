@@ -21,6 +21,12 @@ android {
         versionCode = Versions.AndroidV.versionCode
         versionName = Versions.AndroidV.versionName
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "IMAGES_URL", "\"https://image.tmdb.org/t/p/w500\"")
+        buildConfigField("String", "SERVER_URL", "\"https://api.themoviedb.org/3/\"")
+        buildConfigField("String", "IMAGES_BACKDROP_URL", "\"https://image.tmdb.org/t/p/original\"")
+
+
     }
 
     buildTypes {
@@ -64,10 +70,16 @@ dependencies {
     implementation(Deps.Koin.koinViewModel)
     implementation(Deps.Coroutine.coroutines_android)
     implementation(Deps.Coroutine.coroutines_core)
-
+    implementation(Deps.glide)
+    implementation("androidx.appcompat:appcompat:1.1.0")
+    implementation("androidx.constraintlayout:constraintlayout:1.1.3")
+    kapt(Deps.glide_annotationProcessor)
     implementation(Deps.Core.navigationFragmentKtx)
     implementation(Deps.Core.navigationUiKtx)
     implementation(Deps.Core.constraintlayout)
+
+
+
 
     api(project(":dato"))
     api(project(":hardware"))
