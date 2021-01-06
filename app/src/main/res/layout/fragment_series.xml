@@ -1,11 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".fragments.HomeFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <include layout="@layout/custom_toolbar_movies_series" />
+    <data>
 
-</androidx.core.widget.NestedScrollView>
+        <variable
+            name="type"
+            type="String" />
+
+        <variable
+            name="onclick"
+            type="com.instaleap.netflixapp.INavigateToList" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView xmlns:bind="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".fragments.FragmentSeries">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/include_toolbar"
+                app:spanCount="3"
+                tools:listitem="@layout/portada_item"
+
+                />
+
+
+            <include
+                android:id="@+id/include_toolbar"
+                layout="@layout/custom_toolbar_movies_series"
+                bind:onclick="@{onclick}"
+                bind:type="@{type}" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

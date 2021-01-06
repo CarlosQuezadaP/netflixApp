@@ -10,9 +10,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import com.instaleap.netflixapp.INavigateToList
-import com.instaleap.netflixapp.activities.ListActivity
 import com.instaleap.netflixapp.R
+import com.instaleap.netflixapp.activities.ListActivity
 import com.instaleap.netflixapp.adapters.MoviesAdapter
 import com.instaleap.netflixapp.databinding.FragmentMoviesBinding
 import com.instaleap.netflixapp.viewmodels.MovieByGenreViewModel
@@ -20,12 +21,12 @@ import kotlinx.android.synthetic.main.custom_toolbar_movies_series.view.*
 import kotlinx.android.synthetic.main.fragment_movies.view.*
 import org.koin.android.ext.android.inject
 
+
 private const val REQUEST_CODE = 222
 private const val DATA_ID = "ID"
 private const val DATA_NAME = "GENRE_NAME"
-private const val TYPE = "TYPE"
 
-class fragmentMovies : Fragment(), INavigateToList {
+class fragmentMovies : Fragment(), INavigateToList, View.OnClickListener, OnMovieClick {
 
     val movieByGenreViewModel: MovieByGenreViewModel by inject()
     lateinit var fragmentMoviesBinding: FragmentMoviesBinding
@@ -33,7 +34,6 @@ class fragmentMovies : Fragment(), INavigateToList {
     private var genreId = 0
     private var genreName = ""
     lateinit var moviesAdapter: MoviesAdapter
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,9 +44,11 @@ class fragmentMovies : Fragment(), INavigateToList {
             inflater,
             R.layout.fragment_movies, container, false
         )
+
         fragmentMoviesBinding.onclick = this
         fragmentMoviesBinding.type = "Movie"
 
+        fragmentMoviesBinding.includeToolbar.imageViewNetflix.setOnClickListener(this)
         mRootView = fragmentMoviesBinding.root
 
 
@@ -60,7 +62,7 @@ class fragmentMovies : Fragment(), INavigateToList {
     }
 
     private fun setupAdapter() {
-        moviesAdapter = MoviesAdapter()
+        moviesAdapter = MoviesAdapter(this)
         fragmentMoviesBinding.recyclerViewMovies.adapter = moviesAdapter
     }
 
@@ -92,6 +94,19 @@ class fragmentMovies : Fragment(), INavigateToList {
 
     private fun updateGenreName(genreName: String) {
         mRootView.include_toolbar.textView_series_text.text = genreName
+    }
+
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.imageViewNetflix -> {
+                Navigation.findNavController(v).navigate(R.id.homeFragment)
+            }
+        }
+    }
+
+    override fun onMovieClick(view: View, movieID: Int) {
+        val action = fragmentMoviesDirections.actionFragmentMoviesToFragmentDetailMovie(movieID)
+        Navigation.findNavController(view).navigate(action)
     }
 
 

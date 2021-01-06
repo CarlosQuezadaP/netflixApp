@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_grap"
     app:startDestination="@id/homeFragment">
+
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.instaleap.netflixapp.fragments.HomeFragment"
@@ -12,19 +13,47 @@
         <action
             android:id="@+id/action_homeFragment_to_fragmentMovies"
             app:destination="@id/fragmentMovies" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailTvFragment"
+            app:destination="@id/detailTvFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_fragmentDetailMovie"
+            app:destination="@id/fragmentDetailMovie" />
     </fragment>
+
     <fragment
         android:id="@+id/fragmentMovies"
         android:name="com.instaleap.netflixapp.fragments.fragmentMovies"
-        android:label="Movies"
-        tools:layout="@layout/fragment_movies">
+        android:label="Movies">
         <action
             android:id="@+id/action_fragmentMovies_to_fragmentSeries2"
             app:destination="@id/fragmentSeries" />
+        <action
+            android:id="@+id/action_fragmentMovies_to_fragmentDetailMovie"
+            app:destination="@id/fragmentDetailMovie" />
+        <argument android:name="movieID" />
     </fragment>
+
     <fragment
         android:id="@+id/fragmentSeries"
         android:name="com.instaleap.netflixapp.fragments.FragmentSeries"
-        android:label="Tv Series"
-        tools:layout="@layout/fragment_series" />
+        android:label="Tv Series" >
+        <action
+            android:id="@+id/action_fragmentSeries_to_detailTvFragment"
+            app:destination="@id/detailTvFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentDetailMovie"
+        android:name="com.instaleap.netflixapp.fragments.FragmentDetailMovie"
+        android:label="fragment_detail_movie"
+        tools:layout="@layout/fragment_detail_movie" >
+        <argument
+            android:name="idMovie"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailTvFragment"
+        android:name="com.instaleap.netflixapp.fragments.DetailTvFragment"
+        android:label="fragment_detail_tv"
+        tools:layout="@layout/fragment_detail_tv" />
 </navigation>
