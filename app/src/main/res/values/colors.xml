@@ -26,4 +26,5 @@
     <color name="color_bg_primary">#00838F</color>
     <color name="color_bg_secondary">#2E294E</color>
     <color name="color_bg_disabled">#b0bec5</color>
+    <color name="background">#303030</color>
 </resources>
