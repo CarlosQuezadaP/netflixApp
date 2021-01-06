@@ -8,6 +8,7 @@ plugins {
     kotlin("android.extensions")
     kotlin("kapt")
     id("kotlin-android")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -31,12 +32,10 @@ android {
 
     buildTypes {
         getByName("debug") {
-            isMinifyEnabled = false
             isDebuggable = true
         }
 
         getByName("release") {
-            isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
     }
@@ -78,6 +77,13 @@ dependencies {
     implementation(Deps.Core.navigationUiKtx)
     implementation(Deps.Core.constraintlayout)
 
+    kapt(Deps.Lifecycle.kapt_compiler)
+    api(Deps.Lifecycle.livedataKtx)
+    api(Deps.Lifecycle.viewmodelKtx)
+    api(Deps.Lifecycle.savedStateViewModel)
+    api(Deps.Lifecycle.extensions)
+    api(Deps.Lifecycle.common)
+    api(Deps.Lifecycle.runtime)
 
 
 

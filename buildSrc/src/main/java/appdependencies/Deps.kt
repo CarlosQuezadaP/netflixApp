@@ -40,6 +40,26 @@ object Deps {
         const val logging = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp3}"
     }
 
+
+    object Lifecycle {
+        const val extensions = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
+        const val kapt_compiler = "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle}"
+        const val runtime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
+
+        //const val runtimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${lifecycle}"
+        const val viewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
+
+        // kotlin live data extensions
+        const val livedataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
+
+        // alternately - if using Java8, use the following instead of lifecycle-compiler
+        const val common = "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycle}"
+
+        // view model saved state handler
+        const val savedStateViewModel =
+            "androidx.lifecycle:lifecycle-viewmodel-savedstate:${Versions.savedstate}"
+    }
+
     object Core {
         const val appcompat = "androidx.appcompat:appcompat:${Versions.appCompatX}"
         const val constraintlayout =

@@ -10,6 +10,9 @@ object Versions {
     const val navisafe = "2.1.0"
     const val koin = "2.1.6"
 
+    const val lifecycle = "2.2.0-rc03"
+    const val savedstate = "1.0.0-rc01"
+
     const val retrofit = "2.7.1"
     const val okhttp3 = "4.3.1"
 
