@@ -5,7 +5,9 @@ import com.instaleap.dato.anticorruption.IDtoToDomainConverter
 import com.instaleap.dato.dto.GenreDto
 import com.instaleap.dato.dto.MovieDto
 import com.instaleap.dato.dto.TVDto
+import com.instaleap.dato.responses.movieDatailResponse.MovieDetailDto
 import com.instaleap.domain.models.GenreItemDomain
+import com.instaleap.domain.models.MovieDetailDomain
 import com.instaleap.domain.models.MovieItemDomain
 import com.instaleap.domain.models.TVDomain
 
@@ -104,6 +106,30 @@ class MovieDataSource constructor(
             }
         }
         return tvsDomain ?: throw Exception("No hay series")
+    }
+
+    override suspend fun getDiscoverWithoutGenreTv(page: Int): List<TVDomain> {
+        val tvsResponse = iMovieApi.getTvListWithoutGenre(page)
+        val tvs: List<TVDto>?
+        var tvsDomain: List<TVDomain>? = null
+        if (tvsResponse.isSuccessful) {
+            tvs = tvsResponse.body()?.results
+            tvsDomain = tvs?.map {
+                converter.convertDtoToDomain(it)
+            }
+        }
+        return tvsDomain ?: throw Exception("No hay series")
+    }
+
+    override suspend fun getMovieDetail(movieId: Int): MovieDetailDomain {
+        val movieDetailResponse = iMovieApi.getMovieDetail(movieId)
+        val movieDetailDto: MovieDetailDto?
+        var movieDetailDomain: MovieDetailDomain? = null
+        if (movieDetailResponse.isSuccessful) {
+            movieDetailDto = movieDetailResponse.body()
+            movieDetailDomain = converter.convertDtoToDomain(movieDetailDto!!)
+        }
+        return movieDetailDomain ?: throw Exception("No hay detalle para esta pelicula")
     }
 
 
