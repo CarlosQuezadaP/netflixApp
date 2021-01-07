@@ -11,11 +11,11 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import com.instaleap.netflixapp.handlers.INavigateToList
 import com.instaleap.netflixapp.R
 import com.instaleap.netflixapp.activities.ListActivity
 import com.instaleap.netflixapp.adapters.MoviesAdapter
 import com.instaleap.netflixapp.databinding.FragmentMoviesBinding
+import com.instaleap.netflixapp.handlers.INavigateToList
 import com.instaleap.netflixapp.handlers.OnMovieClick
 import com.instaleap.netflixapp.viewmodels.MovieByGenreViewModel
 import kotlinx.android.synthetic.main.custom_toolbar_movies_series.view.*
@@ -48,8 +48,10 @@ class fragmentMovies : Fragment(), INavigateToList, View.OnClickListener, OnMovi
         fragmentMoviesBinding.apply {
             onclick = this@fragmentMovies
             type = getString(R.string.movie)
-            includeToolbar.imageViewNetflix.setOnClickListener(this@fragmentMovies)
-            includeToolbar.textViewTipeText.text = "Películas"
+            root.apply {
+                include_toolbar.imageViewNetflix.setOnClickListener(this@fragmentMovies)
+                include_toolbar.textView_tipe_text.text = "Películas"
+            }
         }
 
         return fragmentMoviesBinding.root
@@ -105,7 +107,7 @@ class fragmentMovies : Fragment(), INavigateToList, View.OnClickListener, OnMovi
     }
 
     private fun updateGenreName(genreName: String) {
-        fragmentMoviesBinding.includeToolbar.textViewTipeText.text = genreName
+        fragmentMoviesBinding.root.include_toolbar.textView_tipe_text.text = genreName
     }
 
     override fun onClick(v: View?) {
