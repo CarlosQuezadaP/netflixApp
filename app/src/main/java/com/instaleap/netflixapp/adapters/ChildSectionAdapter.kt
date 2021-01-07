@@ -6,11 +6,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.instaleap.domain.CharacterModel
 import com.instaleap.netflixapp.R
-import com.instaleap.netflixapp.diff.CharactersItemDiffCallback
-import com.instaleap.netflixapp.viewholder.CharacterViewHolder
 import com.instaleap.netflixapp.databinding.SectionItemLayoutBinding
+import com.instaleap.netflixapp.diff.CharactersItemDiffCallback
+import com.instaleap.netflixapp.fragments.OnClickHomeItemSection
+import com.instaleap.netflixapp.viewholder.CharacterViewHolder
 
-class ChildSectionAdapter :
+class ChildSectionAdapter(private val onClickHomeItemSection: OnClickHomeItemSection) :
     ListAdapter<CharacterModel, CharacterViewHolder>(CharactersItemDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
@@ -27,7 +28,11 @@ class ChildSectionAdapter :
     }
 
     override fun onBindViewHolder(holderSection: CharacterViewHolder, position: Int) {
-        holderSection.bindTo(getItem(position))
+        val characterModel = getItem(position)
+        holderSection.bindTo(characterModel)
+        holderSection.itemView.setOnClickListener {
+            onClickHomeItemSection.onClickItemSection(it, characterModel.id, characterModel.type)
+        }
     }
 
 }

@@ -1,9 +1,6 @@
 package com.instaleap.dato.datasource
 
-import com.instaleap.domain.models.GenreItemDomain
-import com.instaleap.domain.models.MovieDetailDomain
-import com.instaleap.domain.models.MovieItemDomain
-import com.instaleap.domain.models.TVDomain
+import com.instaleap.domain.models.*
 
 interface IMovieDataSource {
     suspend fun getPopularMovies(page: Int): List<MovieItemDomain>
@@ -15,4 +12,5 @@ interface IMovieDataSource {
     suspend fun getDiscoverTv(page: Int, idGenre: Int): List<TVDomain>
     suspend fun getDiscoverWithoutGenreTv(page: Int): List<TVDomain>
     suspend fun getMovieDetail(movieId: Int): MovieDetailDomain
+    suspend fun getSerieDetail(serieID: Int): SerieDetailDomain
 }

@@ -1,9 +1,6 @@
 package com.instaleap.usecases.repository
 
-import com.instaleap.domain.models.GenreItemDomain
-import com.instaleap.domain.models.MovieDetailDomain
-import com.instaleap.domain.models.MovieItemDomain
-import com.instaleap.domain.models.TVDomain
+import com.instaleap.domain.models.*
 
 interface IMovieRepository {
     suspend fun getPopularMovies(page: Int): List<MovieItemDomain>
@@ -14,4 +11,5 @@ interface IMovieRepository {
     suspend fun getTvsByGenre(page: Int, genreID: Int): List<TVDomain>
     suspend fun getTvsWithoutGenre(page: Int): List<TVDomain>
     suspend fun getDetailMovie(idMovie: Int): MovieDetailDomain
+    suspend fun getDetailSerie(idSerie: Int): SerieDetailDomain
 }

@@ -8,9 +8,11 @@ import com.instaleap.domain.models.TVDomain
 import com.instaleap.netflixapp.R
 import com.instaleap.netflixapp.databinding.PortadaItemBinding
 import com.instaleap.netflixapp.diff.SerieDiffCallback
+import com.instaleap.netflixapp.fragments.OnserieClick
 import com.instaleap.netflixapp.viewholder.SerieViewHolder
 
-class SeriesAdapter : ListAdapter<TVDomain, SerieViewHolder>(SerieDiffCallback()) {
+class SeriesAdapter(private val onserieClick: OnserieClick) :
+    ListAdapter<TVDomain, SerieViewHolder>(SerieDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SerieViewHolder {
 
@@ -26,6 +28,9 @@ class SeriesAdapter : ListAdapter<TVDomain, SerieViewHolder>(SerieDiffCallback()
 
     override fun onBindViewHolder(holder: SerieViewHolder, position: Int) {
         holder.bindTo(getItem(position))
+        holder.itemView.setOnClickListener {
+            onserieClick.onClicl(it, getItem(position).id)
+        }
     }
 
 

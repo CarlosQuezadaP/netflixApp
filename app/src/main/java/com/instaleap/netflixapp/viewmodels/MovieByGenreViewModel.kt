@@ -3,11 +3,11 @@ package com.instaleap.netflixapp.viewmodels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.instaleap.domain.models.MovieItemDomain
-import com.instaleap.usecases.IGetMoviesByGenre
+import com.instaleap.usecases.IGetMoviesByGenreUseCase
 import kotlinx.coroutines.*
 
 class MovieByGenreViewModel(
-    private val iGetMoviesByGenre: IGetMoviesByGenre
+    private val iGetMoviesByGenreUseCase: IGetMoviesByGenreUseCase
 ) : ViewModel() {
 
     var movies = MutableLiveData<List<MovieItemDomain>>()
@@ -17,7 +17,7 @@ class MovieByGenreViewModel(
 
     fun getMovies(page: Int, genreId: Int = 0) {
         job = coroutineScope.launch {
-            val response = iGetMoviesByGenre.invoke(page, genreId)
+            val response = iGetMoviesByGenreUseCase.invoke(page, genreId)
             withContext(Dispatchers.Main) {
                 movies.value = response
             }

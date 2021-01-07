@@ -4,10 +4,8 @@ import com.instaleap.dato.dto.GenreDto
 import com.instaleap.dato.dto.MovieDto
 import com.instaleap.dato.dto.TVDto
 import com.instaleap.dato.responses.movieDatailResponse.MovieDetailDto
-import com.instaleap.domain.models.GenreItemDomain
-import com.instaleap.domain.models.MovieDetailDomain
-import com.instaleap.domain.models.MovieItemDomain
-import com.instaleap.domain.models.TVDomain
+import com.instaleap.dato.responses.serieDetailResponse.SerieDetailDto
+import com.instaleap.domain.models.*
 
 class DtoToDomainConverter : IDtoToDomainConverter {
 
@@ -77,6 +75,35 @@ class DtoToDomainConverter : IDtoToDomainConverter {
             vote_average = detailDto.vote_average,
             vote_count = detailDto.vote_count
         )
+    }
+
+    override fun convertDtoToDomain(serieDetailDto: SerieDetailDto): SerieDetailDomain {
+        val serieDetailDomain = SerieDetailDomain(
+            backdrop_path = serieDetailDto.backdrop_path,
+            first_air_date = serieDetailDto.first_air_date,
+            genres = serieDetailDto.genres,
+            homepage = serieDetailDto.homepage,
+            id = serieDetailDto.id,
+            in_production = serieDetailDto.in_production,
+            languages = serieDetailDto.languages,
+            last_air_date = serieDetailDto.last_air_date,
+            name = serieDetailDto.name,
+            number_of_episodes = serieDetailDto.number_of_episodes,
+            number_of_seasons = serieDetailDto.number_of_seasons,
+            origin_country = serieDetailDto.origin_country,
+            original_language = serieDetailDto.original_language,
+            original_name = serieDetailDto.original_name,
+            overview = serieDetailDto.overview,
+            popularity = serieDetailDto.popularity,
+            poster_path = serieDetailDto.poster_path,
+            status = serieDetailDto.status,
+            tagline = serieDetailDto.tagline,
+            type = serieDetailDto.type,
+            vote_average = serieDetailDto.vote_average,
+            vote_count = serieDetailDto.vote_count,
+            episode_run_time = serieDetailDto.episode_run_time
+        )
+        return serieDetailDomain
     }
 
 

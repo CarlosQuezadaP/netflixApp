@@ -2,30 +2,27 @@ package com.instaleap.netflixapp.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.instaleap.domain.models.GenreItemDomain
-import com.instaleap.usecases.IGetMoviesGenres
+import com.instaleap.domain.models.SerieDetailDomain
+import com.instaleap.usecases.IGetSerieDetailUseCase
 import kotlinx.coroutines.*
 
-class GenresMovieUseCaseViewModel(private val iGetMoviesGenres: IGetMoviesGenres) : ViewModel() {
+class DetailSerieViewModel(
+    private val iGetSerieDetailUseCase: IGetSerieDetailUseCase
+) : ViewModel() {
 
-
-    var moviesGenres = MutableLiveData<List<GenreItemDomain>>()
+    var serieDetail = MutableLiveData<SerieDetailDomain>()
     private var job: Job? = null
     private var coroutineScope = CoroutineScope(Dispatchers.IO)
 
-    init {
-        getAllMoviesGenres()
-    }
 
-    private fun getAllMoviesGenres() {
+    fun getSerieDetail(movieId: Int) {
         job = coroutineScope.launch {
-            val response = iGetMoviesGenres.invoke()
+            val response = iGetSerieDetailUseCase.invoke(movieId)
             withContext(Dispatchers.Main) {
-                moviesGenres.value = response
+                serieDetail.value = response
             }
         }
     }
-
 
     override fun onCleared() {
         super.onCleared()

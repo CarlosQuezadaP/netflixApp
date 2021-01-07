@@ -3,11 +3,11 @@ package com.instaleap.netflixapp.viewmodels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.instaleap.domain.SectionModel
-import com.instaleap.usecases.IGetAllModelsSections
+import com.instaleap.usecases.IGetAllModelsSectionsUseCase
 import kotlinx.coroutines.*
 
-class HomeUseCaseViewModel(
-    private val iGetAllModelsSections: IGetAllModelsSections
+class HomeViewModel(
+    private val iGetAllModelsSectionsUseCase: IGetAllModelsSectionsUseCase
 ) : ViewModel() {
 
     var sections = MutableLiveData<List<SectionModel>>()
@@ -21,7 +21,7 @@ class HomeUseCaseViewModel(
 
     private fun getSections() {
         job = coroutineScope.launch {
-            val response = iGetAllModelsSections.invoke(1)
+            val response = iGetAllModelsSectionsUseCase.invoke(1)
             withContext(Dispatchers.Main) {
                 sections.value = response
             }

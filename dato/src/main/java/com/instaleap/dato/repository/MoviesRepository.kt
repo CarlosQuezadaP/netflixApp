@@ -1,10 +1,7 @@
 package com.instaleap.dato.repository
 
 import com.instaleap.dato.datasource.IMovieDataSource
-import com.instaleap.domain.models.GenreItemDomain
-import com.instaleap.domain.models.MovieDetailDomain
-import com.instaleap.domain.models.MovieItemDomain
-import com.instaleap.domain.models.TVDomain
+import com.instaleap.domain.models.*
 import com.instaleap.usecases.repository.IMovieRepository
 
 class MoviesRepository(private val iMovieDataSource: IMovieDataSource) :
@@ -27,6 +24,10 @@ class MoviesRepository(private val iMovieDataSource: IMovieDataSource) :
 
     override suspend fun getDetailMovie(idMovie: Int): MovieDetailDomain {
         return iMovieDataSource.getMovieDetail(idMovie)
+    }
+
+    override suspend fun getDetailSerie(idSerie: Int): SerieDetailDomain {
+        return iMovieDataSource.getSerieDetail(idSerie)
     }
 
     override suspend fun getPopularTvs(page: Int): List<TVDomain> {

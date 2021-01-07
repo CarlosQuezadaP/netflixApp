@@ -7,6 +7,7 @@ import com.instaleap.dato.responses.genresTV.GenresTVResponse
 import com.instaleap.dato.responses.getPopularMovies.GetPopularResponse
 import com.instaleap.dato.responses.getPopularTvSeries.GetPopularTVResponse
 import com.instaleap.dato.responses.movieDatailResponse.MovieDetailDto
+import com.instaleap.dato.responses.serieDetailResponse.SerieDetailDto
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -53,5 +54,10 @@ interface IMovieApi {
     suspend fun getMovieDetail(
         @Path("movie_id") movie_id: Int,
     ): Response<MovieDetailDto>
+
+    @GET("tv/{tv_id}")
+    suspend fun getSerieDetail(
+        @Path("tv_id") tv_id: Int,
+    ): Response<SerieDetailDto>
 
 }

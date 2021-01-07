@@ -7,7 +7,7 @@ import com.instaleap.domain.models.GenreItemDomain
 import com.instaleap.netflixapp.ISelectGenre
 import com.instaleap.netflixapp.adapters.ListActivityAdapter
 import com.instaleap.netflixapp.databinding.ActivityListBinding
-import com.instaleap.netflixapp.viewmodels.GenresMovieUseCaseViewModel
+import com.instaleap.netflixapp.viewmodels.GenresMovieViewModel
 import kotlinx.android.synthetic.main.activity_list.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -16,7 +16,7 @@ private const val DATA_NAME = "GENRE_NAME"
 
 class ListActivity : AppCompatActivity(), ISelectGenre {
 
-    private val genresMovieUseCaseViewModel: GenresMovieUseCaseViewModel by viewModel()
+    private val genresMovieViewModel: GenresMovieViewModel by viewModel()
     private lateinit var activityListBinding: ActivityListBinding
     private lateinit var listActivityAdapter: ListActivityAdapter
 
@@ -40,7 +40,7 @@ class ListActivity : AppCompatActivity(), ISelectGenre {
     }
 
     private fun getAllGenres() {
-        genresMovieUseCaseViewModel.moviesGenres.observe(this@ListActivity, {
+        genresMovieViewModel.moviesGenres.observe(this@ListActivity, {
             listActivityAdapter.submitList(it)
         })
     }

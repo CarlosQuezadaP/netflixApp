@@ -2,15 +2,12 @@ package com.instaleap.usecases
 
 import com.instaleap.domain.CharacterModel
 import com.instaleap.domain.SectionModel
-import com.instaleap.domain.models.GenreItemDomain
-import com.instaleap.domain.models.MovieDetailDomain
-import com.instaleap.domain.models.MovieItemDomain
-import com.instaleap.domain.models.TVDomain
+import com.instaleap.domain.models.*
 import com.instaleap.usecases.repository.IMovieRepository
 
 
 class GetAllModelsSectionsUseCase(private val iMovieRepository: IMovieRepository) :
-    IGetAllModelsSections {
+    IGetAllModelsSectionsUseCase {
 
 
     override suspend fun invoke(page: Int): List<SectionModel> {
@@ -52,15 +49,16 @@ class GetAllModelsSectionsUseCase(private val iMovieRepository: IMovieRepository
     }
 }
 
-class GetAllMoviesGenres(private val iMovieRepository: IMovieRepository) :
-    IGetMoviesGenres {
+class GetAllMoviesGenresUseCase(private val iMovieRepository: IMovieRepository) :
+    IGetAllMoviesGenresUseCase {
 
     override suspend fun invoke(): List<GenreItemDomain> {
         return iMovieRepository.getGenresMovies()
     }
 }
 
-class GetMoviesByGenreUseCase(private val iMovieRepository: IMovieRepository) : IGetMoviesByGenre {
+class GetMoviesByGenreUseCase(private val iMovieRepository: IMovieRepository) :
+    IGetMoviesByGenreUseCase {
     override suspend fun invoke(page: Int, genreID: Int): List<MovieItemDomain> {
         if (genreID != 0) {
             return iMovieRepository.getMoviesByGenre(page, genreID)
@@ -69,7 +67,8 @@ class GetMoviesByGenreUseCase(private val iMovieRepository: IMovieRepository) : 
     }
 }
 
-class GetTvsByGenreUseCase(private val iMovieRepository: IMovieRepository) : IGetTvsByGenre {
+class GetSeriesByGenreUseCase(private val iMovieRepository: IMovieRepository) :
+    IGetSeriesByGenreUseCase {
     override suspend fun invoke(page: Int, genreID: Int): List<TVDomain> {
         if (genreID != 0) {
             return iMovieRepository.getTvsByGenre(page, genreID)
@@ -78,29 +77,41 @@ class GetTvsByGenreUseCase(private val iMovieRepository: IMovieRepository) : IGe
     }
 }
 
-class GetMovieDetailUseCase(private val iMovieRepository: IMovieRepository) : IGetMovieDetail {
+class GetMovieDetailUseCase(private val iMovieRepository: IMovieRepository) :
+    IGetMovieDetailUseCase {
     override suspend fun invoke(movieId: Int): MovieDetailDomain {
         return iMovieRepository.getDetailMovie(movieId)
     }
-
 }
 
-interface IGetAllModelsSections {
+class GetSerieDetailUseCase(private val iMovieRepository: IMovieRepository) :
+    IGetSerieDetailUseCase {
+    override suspend fun invoke(movieId: Int): SerieDetailDomain {
+        return iMovieRepository.getDetailSerie(movieId)
+    }
+}
+
+
+interface IGetAllModelsSectionsUseCase {
     suspend fun invoke(page: Int): List<SectionModel>
 }
 
-interface IGetMoviesGenres {
+interface IGetAllMoviesGenresUseCase {
     suspend fun invoke(): List<GenreItemDomain>
 }
 
-interface IGetMoviesByGenre {
+interface IGetMoviesByGenreUseCase {
     suspend fun invoke(page: Int, genreID: Int): List<MovieItemDomain>
 }
 
-interface IGetTvsByGenre {
+interface IGetSeriesByGenreUseCase {
     suspend fun invoke(page: Int, genreID: Int): List<TVDomain>
 }
 
-interface IGetMovieDetail {
+interface IGetMovieDetailUseCase {
     suspend fun invoke(movieId: Int): MovieDetailDomain
+}
+
+interface IGetSerieDetailUseCase {
+    suspend fun invoke(movieId: Int): SerieDetailDomain
 }

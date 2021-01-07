@@ -6,7 +6,6 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.instaleap.domain.models.MovieDetailDomain
 import com.instaleap.netflixapp.Api
 import com.instaleap.netflixapp.BuildConfig
 import com.instaleap.netflixapp.requestGlideListener
@@ -34,23 +33,19 @@ fun loadImage(view: ImageView, imageUrl: String?) {
 }
 
 
-@SuppressLint("SetTextI18n")
 @BindingAdapter("bindReleaseDate")
-fun bindReleaseDate(view: TextView, releaseDate: MovieDetailDomain?) {
-    view.text = "Release Date : ${releaseDate?.release_date}"
+fun bindReleaseDate(view: TextView, releaseDate: String?) {
+    view.text = "Release Date : ${releaseDate ?: "No date."}"
 }
 
 
-@BindingAdapter("bindBackDrop")
-fun bindBackDrop(view: ImageView, movie: MovieDetailDomain?) {
-    if (movie?.backdrop_path != null) {
-        Glide.with(view.context).load(movie?.backdrop_path?.let { Api.getBackdropPath(it) })
-            .listener(view.requestGlideListener())
-            .into(view)
-    } else {
-        Glide.with(view.context).load(movie?.poster_path?.let { Api.getBackdropPath(it) })
-            .listener(view.requestGlideListener())
-            .into(view)
-    }
+@BindingAdapter(value = ["backdrop_path", "poster_path"], requireAll = true)
+fun bindBackDrop(view: ImageView, backdrop_path: String?, poster_path: String?) {
+
+    val imageUrl = backdrop_path ?: poster_path ?: ""
+
+    Glide.with(view.context).load(Api.getBackdropPath(imageUrl))
+        .listener(view.requestGlideListener())
+        .into(view)
 }
 

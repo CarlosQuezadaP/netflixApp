@@ -15,7 +15,7 @@
             app:destination="@id/fragmentMovies" />
         <action
             android:id="@+id/action_homeFragment_to_detailTvFragment"
-            app:destination="@id/detailTvFragment" />
+            app:destination="@id/detailSerieFragment" />
         <action
             android:id="@+id/action_homeFragment_to_fragmentDetailMovie"
             app:destination="@id/fragmentDetailMovie" />
@@ -31,29 +31,35 @@
         <action
             android:id="@+id/action_fragmentMovies_to_fragmentDetailMovie"
             app:destination="@id/fragmentDetailMovie" />
-        <argument android:name="movieID" />
     </fragment>
 
     <fragment
         android:id="@+id/fragmentSeries"
         android:name="com.instaleap.netflixapp.fragments.FragmentSeries"
-        android:label="Tv Series" >
+        android:label="Tv Series">
         <action
             android:id="@+id/action_fragmentSeries_to_detailTvFragment"
-            app:destination="@id/detailTvFragment" />
+            app:destination="@id/detailSerieFragment" />
     </fragment>
     <fragment
         android:id="@+id/fragmentDetailMovie"
         android:name="com.instaleap.netflixapp.fragments.FragmentDetailMovie"
         android:label="fragment_detail_movie"
-        tools:layout="@layout/fragment_detail_movie" >
+        tools:layout="@layout/fragment_detail_movie">
         <argument
             android:name="idMovie"
             app:argType="integer" />
     </fragment>
     <fragment
-        android:id="@+id/detailTvFragment"
-        android:name="com.instaleap.netflixapp.fragments.DetailTvFragment"
-        android:label="fragment_detail_tv"
-        tools:layout="@layout/fragment_detail_tv" />
+        android:id="@+id/detailSerieFragment"
+        android:name="com.instaleap.netflixapp.fragments.DetailSerieFragment"
+        android:label="fragment_detail_series"
+        tools:layout="@layout/fragment_detail_serie">
+        <argument
+            android:name="idSerie"
+            app:argType="integer" />
+    </fragment>
+    <argument
+        android:name="idSerie"
+        app:argType="integer" />
 </navigation>

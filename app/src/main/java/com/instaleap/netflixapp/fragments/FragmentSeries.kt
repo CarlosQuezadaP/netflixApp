@@ -24,7 +24,7 @@ private const val REQUEST_CODE = 222
 private const val DATA_ID = "ID"
 private const val DATA_NAME = "GENRE_NAME"
 
-class FragmentSeries : Fragment(), INavigateToList, View.OnClickListener {
+class FragmentSeries : Fragment(), INavigateToList, View.OnClickListener, OnserieClick {
 
     val viewModelSeries: SeriesViewModels by viewModel()
     lateinit var fragmentSeriesBinding: FragmentSeriesBinding
@@ -55,7 +55,7 @@ class FragmentSeries : Fragment(), INavigateToList, View.OnClickListener {
     }
 
     private fun setAdapter() {
-        seriesAdapter = SeriesAdapter()
+        seriesAdapter = SeriesAdapter(this)
         fragmentSeriesBinding.recyclerView.adapter = seriesAdapter
     }
 
@@ -94,6 +94,11 @@ class FragmentSeries : Fragment(), INavigateToList, View.OnClickListener {
                 Navigation.findNavController(v).navigate(R.id.homeFragment)
             }
         }
+    }
+
+    override fun onClicl(view: View, serieId: Int) {
+        val action = FragmentSeriesDirections.actionFragmentSeriesToDetailTvFragment(serieId)
+        Navigation.findNavController(view).navigate(action)
     }
 
 }

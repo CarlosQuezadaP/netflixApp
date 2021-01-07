@@ -6,10 +6,8 @@ import com.instaleap.dato.dto.GenreDto
 import com.instaleap.dato.dto.MovieDto
 import com.instaleap.dato.dto.TVDto
 import com.instaleap.dato.responses.movieDatailResponse.MovieDetailDto
-import com.instaleap.domain.models.GenreItemDomain
-import com.instaleap.domain.models.MovieDetailDomain
-import com.instaleap.domain.models.MovieItemDomain
-import com.instaleap.domain.models.TVDomain
+import com.instaleap.dato.responses.serieDetailResponse.SerieDetailDto
+import com.instaleap.domain.models.*
 
 class MovieDataSource constructor(
     private val iMovieApi: IMovieApi,
@@ -130,6 +128,17 @@ class MovieDataSource constructor(
             movieDetailDomain = converter.convertDtoToDomain(movieDetailDto!!)
         }
         return movieDetailDomain ?: throw Exception("No hay detalle para esta pelicula")
+    }
+
+    override suspend fun getSerieDetail(serieID: Int): SerieDetailDomain {
+        val serieDetailResponse = iMovieApi.getSerieDetail(serieID)
+        val serieDetailDto: SerieDetailDto?
+        var serieDetailDomain: SerieDetailDomain? = null
+        if (serieDetailResponse.isSuccessful) {
+            serieDetailDto = serieDetailResponse.body()
+            serieDetailDomain = converter.convertDtoToDomain(serieDetailDto!!)
+        }
+        return serieDetailDomain ?: throw Exception("No hay detalle para esta serie")
     }
 
 

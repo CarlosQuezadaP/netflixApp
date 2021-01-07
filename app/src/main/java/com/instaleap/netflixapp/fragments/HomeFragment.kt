@@ -8,15 +8,15 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.instaleap.netflixapp.R
 import com.instaleap.netflixapp.adapters.MainSectionAdapter
-import com.instaleap.netflixapp.viewmodels.HomeUseCaseViewModel
+import com.instaleap.netflixapp.viewmodels.HomeViewModel
 import kotlinx.android.synthetic.main.custom_toolbar_main.view.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import org.koin.android.ext.android.inject
 
-class HomeFragment : Fragment(), View.OnClickListener {
+class HomeFragment : Fragment(), View.OnClickListener, OnClickHomeItemSection {
 
 
-    val homeUseCaseViewModel: HomeUseCaseViewModel by inject()
+    val homeViewModel: HomeViewModel by inject()
     lateinit var content: View
     lateinit var sectionAdapter: MainSectionAdapter
 
@@ -37,12 +37,12 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
     private fun configureAdapters() {
 
-        sectionAdapter = MainSectionAdapter()
+        sectionAdapter = MainSectionAdapter(this)
         content.recyclerViewMain.adapter = sectionAdapter
     }
 
     private fun getAllSections() {
-        homeUseCaseViewModel.sections.observe(viewLifecycleOwner, {
+        homeViewModel.sections.observe(viewLifecycleOwner, {
             sectionAdapter.submitList(it)
         })
     }
@@ -55,6 +55,20 @@ class HomeFragment : Fragment(), View.OnClickListener {
             R.id.textView_series_text -> {
                 Navigation.findNavController(v).navigate(R.id.fragmentSeries)
             }
+        }
+    }
+
+    override fun onClickItemSection(view: View, id: Int, type: String) {
+        when (type) {
+            "Movie" -> {
+                val action = HomeFragmentDirections.actionHomeFragmentToFragmentDetailMovie(id)
+                Navigation.findNavController(view).navigate(action)
+            }
+            "Serie" -> {
+                val action = HomeFragmentDirections.actionHomeFragmentToDetailTvFragment(id)
+                Navigation.findNavController(view).navigate(action)
+            }
+
         }
     }
 

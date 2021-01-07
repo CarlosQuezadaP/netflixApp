@@ -4,9 +4,10 @@ import com.instaleap.usecases.*
 import org.koin.dsl.module
 
 val usescase_module = module {
-    single<IGetAllModelsSections> { GetAllModelsSectionsUseCase(get()) }
-    single<IGetMoviesGenres> { GetAllMoviesGenres(get()) }
-    single<IGetMoviesByGenre> { GetMoviesByGenreUseCase(get()) }
-    single<IGetTvsByGenre> { GetTvsByGenreUseCase(get()) }
-    single<IGetMovieDetail> { GetMovieDetailUseCase(get()) }
+    single<IGetAllModelsSectionsUseCase> { GetAllModelsSectionsUseCase(get()) }
+    single<IGetAllMoviesGenresUseCase> { GetAllMoviesGenresUseCase(get()) }
+    single<IGetMoviesByGenreUseCase> { GetMoviesByGenreUseCase(get()) }
+    single<IGetSeriesByGenreUseCase> { GetSeriesByGenreUseCase(get()) }
+    single<IGetMovieDetailUseCase> { GetMovieDetailUseCase(get()) }
+    single<IGetSerieDetailUseCase> { GetSerieDetailUseCase(get()) }
 }

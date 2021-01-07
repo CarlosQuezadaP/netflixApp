@@ -6,11 +6,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.instaleap.domain.SectionModel
 import com.instaleap.netflixapp.R
-import com.instaleap.netflixapp.diff.SectionItemDiffCallback
-import com.instaleap.netflixapp.viewholder.SectionViewHolder
 import com.instaleap.netflixapp.databinding.SectionRowBinding
+import com.instaleap.netflixapp.diff.SectionItemDiffCallback
+import com.instaleap.netflixapp.fragments.OnClickHomeItemSection
+import com.instaleap.netflixapp.viewholder.SectionViewHolder
 
-class MainSectionAdapter :
+class MainSectionAdapter(private val onClickHomeItemSection: OnClickHomeItemSection) :
     ListAdapter<SectionModel, SectionViewHolder>(SectionItemDiffCallback()) {
 
 
@@ -23,7 +24,7 @@ class MainSectionAdapter :
             false
         ) as SectionRowBinding
 
-        return SectionViewHolder(layout)
+        return SectionViewHolder(layout, onClickHomeItemSection)
     }
 
     override fun onBindViewHolder(holder: SectionViewHolder, position: Int) {
