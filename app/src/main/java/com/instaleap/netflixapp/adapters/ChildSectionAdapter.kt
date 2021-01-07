@@ -8,7 +8,7 @@ import com.instaleap.domain.CharacterModel
 import com.instaleap.netflixapp.R
 import com.instaleap.netflixapp.databinding.SectionItemLayoutBinding
 import com.instaleap.netflixapp.diff.CharactersItemDiffCallback
-import com.instaleap.netflixapp.fragments.OnClickHomeItemSection
+import com.instaleap.netflixapp.handlers.OnClickHomeItemSection
 import com.instaleap.netflixapp.viewholder.CharacterViewHolder
 
 class ChildSectionAdapter(private val onClickHomeItemSection: OnClickHomeItemSection) :
@@ -29,9 +29,15 @@ class ChildSectionAdapter(private val onClickHomeItemSection: OnClickHomeItemSec
 
     override fun onBindViewHolder(holderSection: CharacterViewHolder, position: Int) {
         val characterModel = getItem(position)
-        holderSection.bindTo(characterModel)
-        holderSection.itemView.setOnClickListener {
-            onClickHomeItemSection.onClickItemSection(it, characterModel.id, characterModel.type)
+        holderSection.apply {
+            bindTo(characterModel)
+            itemView.setOnClickListener {
+                onClickHomeItemSection.onClickItemSection(
+                    it,
+                    characterModel.id,
+                    characterModel.type
+                )
+            }
         }
     }
 

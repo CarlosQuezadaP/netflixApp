@@ -11,7 +11,7 @@
 
         <variable
             name="onclick"
-            type="com.instaleap.netflixapp.INavigateToList" />
+            type="com.instaleap.netflixapp.handlers.INavigateToList" />
     </data>
 
     <androidx.appcompat.widget.Toolbar

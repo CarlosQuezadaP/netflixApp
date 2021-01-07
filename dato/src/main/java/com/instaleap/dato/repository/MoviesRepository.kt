@@ -18,7 +18,7 @@ class MoviesRepository(private val iMovieDataSource: IMovieDataSource) :
         return iMovieDataSource.getDiscoverMovieWithoutGenre(page)
     }
 
-    override suspend fun getTvsWithoutGenre(page: Int): List<TVDomain> {
+    override suspend fun getTvsWithoutGenre(page: Int): List<SerieDomain> {
         return iMovieDataSource.getDiscoverWithoutGenreTv(page)
     }
 
@@ -30,11 +30,11 @@ class MoviesRepository(private val iMovieDataSource: IMovieDataSource) :
         return iMovieDataSource.getSerieDetail(idSerie)
     }
 
-    override suspend fun getPopularTvs(page: Int): List<TVDomain> {
+    override suspend fun getPopularTvs(page: Int): List<SerieDomain> {
         return iMovieDataSource.getPopularTvs(page)
     }
 
-    override suspend fun getTvsByGenre(page: Int, genreID: Int): List<TVDomain> {
+    override suspend fun getTvsByGenre(page: Int, genreID: Int): List<SerieDomain> {
         return iMovieDataSource.getDiscoverTv(page, genreID)
     }
 

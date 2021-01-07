@@ -12,9 +12,7 @@ import org.koin.androidx.fragment.android.setupKoinFragmentFactory
 
 class HomePageActivity : AppCompatActivity() {
 
-
     lateinit var homePageBinding: ActivityHomePageBinding
-
 
     private val navController: NavController by lazy { findNavController(R.id.fragment_nav_host) }
 
@@ -25,7 +23,6 @@ class HomePageActivity : AppCompatActivity() {
         setContentView(homePageBinding.root)
         bottom_navigation.setupWithNavController(navController)
     }
-
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp()

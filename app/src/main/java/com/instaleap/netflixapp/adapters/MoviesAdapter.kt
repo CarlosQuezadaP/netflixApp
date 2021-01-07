@@ -8,7 +8,7 @@ import com.instaleap.domain.models.MovieItemDomain
 import com.instaleap.netflixapp.R
 import com.instaleap.netflixapp.databinding.PortadaItemBinding
 import com.instaleap.netflixapp.diff.MovieDiffCallback
-import com.instaleap.netflixapp.fragments.OnMovieClick
+import com.instaleap.netflixapp.handlers.OnMovieClick
 import com.instaleap.netflixapp.viewholder.MovieViewHolder
 
 class MoviesAdapter(private val onMovieClick: OnMovieClick) :
@@ -27,9 +27,13 @@ class MoviesAdapter(private val onMovieClick: OnMovieClick) :
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        holder.bindTo(getItem(position))
-        holder.itemView.setOnClickListener {
-            onMovieClick.onMovieClick(holder.itemView, getItem(position).id)
+
+        holder.apply {
+            bindTo(getItem(position))
+            itemView.setOnClickListener {
+                onMovieClick.onMovieClick(holder.itemView, getItem(position).id)
+            }
+
         }
     }
 

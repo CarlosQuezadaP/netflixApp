@@ -1,12 +1,10 @@
 package com.instaleap.netflixapp.bindings
 
-import android.annotation.SuppressLint
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.instaleap.netflixapp.Api
 import com.instaleap.netflixapp.BuildConfig
 import com.instaleap.netflixapp.requestGlideListener
 
@@ -42,10 +40,19 @@ fun bindReleaseDate(view: TextView, releaseDate: String?) {
 @BindingAdapter(value = ["backdrop_path", "poster_path"], requireAll = true)
 fun bindBackDrop(view: ImageView, backdrop_path: String?, poster_path: String?) {
 
-    val imageUrl = backdrop_path ?: poster_path ?: ""
 
-    Glide.with(view.context).load(Api.getBackdropPath(imageUrl))
-        .listener(view.requestGlideListener())
+    var imageUrl: String = ""
+
+    if (!backdrop_path.isNullOrEmpty()) {
+        imageUrl = "${BuildConfig.IMAGES_BACKDROP_URL}$backdrop_path"
+    } else if (!poster_path.isNullOrEmpty()) {
+        imageUrl = "${BuildConfig.IMAGES_URL}$poster_path"
+    }
+
+    val url = imageUrl
+
+    Glide.with(view.context)
+        .load(url).listener(view.requestGlideListener())
         .into(view)
 }
 

@@ -1,4 +1,4 @@
-package com.instaleap.netflixapp
+package com.instaleap.netflixapp.handlers
 
 import com.instaleap.domain.models.GenreItemDomain
 

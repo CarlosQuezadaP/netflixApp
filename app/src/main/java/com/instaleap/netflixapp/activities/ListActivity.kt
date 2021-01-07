@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.instaleap.domain.models.GenreItemDomain
-import com.instaleap.netflixapp.ISelectGenre
+import com.instaleap.netflixapp.handlers.ISelectGenre
 import com.instaleap.netflixapp.adapters.ListActivityAdapter
 import com.instaleap.netflixapp.databinding.ActivityListBinding
 import com.instaleap.netflixapp.viewmodels.GenresMovieViewModel

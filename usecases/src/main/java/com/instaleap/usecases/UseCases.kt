@@ -21,7 +21,7 @@ class GetAllModelsSectionsUseCase(private val iMovieRepository: IMovieRepository
         return iMovieRepository.getPopularMovies(page)
     }
 
-    private suspend fun getAllSeries(page: Int): List<TVDomain> {
+    private suspend fun getAllSeries(page: Int): List<SerieDomain> {
         return iMovieRepository.getPopularTvs(page)
     }
 
@@ -38,7 +38,7 @@ class GetAllModelsSectionsUseCase(private val iMovieRepository: IMovieRepository
     }
 
     private fun generateSerieSection(
-        series: List<TVDomain>,
+        series: List<SerieDomain>,
     ): SectionModel {
         val moviesModels = series
 
@@ -69,7 +69,7 @@ class GetMoviesByGenreUseCase(private val iMovieRepository: IMovieRepository) :
 
 class GetSeriesByGenreUseCase(private val iMovieRepository: IMovieRepository) :
     IGetSeriesByGenreUseCase {
-    override suspend fun invoke(page: Int, genreID: Int): List<TVDomain> {
+    override suspend fun invoke(page: Int, genreID: Int): List<SerieDomain> {
         if (genreID != 0) {
             return iMovieRepository.getTvsByGenre(page, genreID)
         }
@@ -105,7 +105,7 @@ interface IGetMoviesByGenreUseCase {
 }
 
 interface IGetSeriesByGenreUseCase {
-    suspend fun invoke(page: Int, genreID: Int): List<TVDomain>
+    suspend fun invoke(page: Int, genreID: Int): List<SerieDomain>
 }
 
 interface IGetMovieDetailUseCase {

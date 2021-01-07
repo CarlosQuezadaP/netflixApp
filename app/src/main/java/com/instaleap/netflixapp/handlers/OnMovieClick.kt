@@ -1,4 +1,4 @@
-package com.instaleap.netflixapp.fragments
+package com.instaleap.netflixapp.handlers
 
 import android.view.View
 

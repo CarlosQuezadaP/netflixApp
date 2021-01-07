@@ -38,8 +38,8 @@
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     app:backdrop_path="@{viewModel.movieDetail.backdrop_path}"
-                    app:layout_collapseMode="parallax"
-                    app:poster_path="@{viewModel.movieDetail.poster_path}" />
+                    app:poster_path="@{viewModel.movieDetail.poster_path}"
+                    app:layout_collapseMode="parallax" />
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/movie_detail_toolbar"

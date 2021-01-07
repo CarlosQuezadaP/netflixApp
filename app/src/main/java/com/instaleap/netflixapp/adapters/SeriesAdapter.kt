@@ -4,15 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.instaleap.domain.models.TVDomain
+import com.instaleap.domain.models.SerieDomain
 import com.instaleap.netflixapp.R
 import com.instaleap.netflixapp.databinding.PortadaItemBinding
 import com.instaleap.netflixapp.diff.SerieDiffCallback
-import com.instaleap.netflixapp.fragments.OnserieClick
+import com.instaleap.netflixapp.handlers.OnserieClick
 import com.instaleap.netflixapp.viewholder.SerieViewHolder
 
 class SeriesAdapter(private val onserieClick: OnserieClick) :
-    ListAdapter<TVDomain, SerieViewHolder>(SerieDiffCallback()) {
+    ListAdapter<SerieDomain, SerieViewHolder>(SerieDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SerieViewHolder {
 
@@ -27,9 +27,13 @@ class SeriesAdapter(private val onserieClick: OnserieClick) :
     }
 
     override fun onBindViewHolder(holder: SerieViewHolder, position: Int) {
-        holder.bindTo(getItem(position))
-        holder.itemView.setOnClickListener {
-            onserieClick.onClicl(it, getItem(position).id)
+
+        holder.apply {
+            bindTo(getItem(position))
+            itemView.setOnClickListener {
+                onserieClick.onClicl(it, getItem(position).id)
+            }
+
         }
     }
 

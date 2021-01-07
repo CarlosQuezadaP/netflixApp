@@ -2,7 +2,7 @@ package com.instaleap.dato.anticorruption
 
 import com.instaleap.dato.dto.GenreDto
 import com.instaleap.dato.dto.MovieDto
-import com.instaleap.dato.dto.TVDto
+import com.instaleap.dato.dto.SerieDto
 import com.instaleap.dato.responses.movieDatailResponse.MovieDetailDto
 import com.instaleap.dato.responses.serieDetailResponse.SerieDetailDto
 import com.instaleap.domain.models.*
@@ -30,8 +30,8 @@ class DtoToDomainConverter : IDtoToDomainConverter {
     override fun convertDtoToDomain(genreDto: GenreDto) =
         GenreItemDomain(genreDto.id, genreDto.name)
 
-    override fun convertDtoToDomain(tVDto: TVDto) =
-        TVDomain(
+    override fun convertDtoToDomain(tVDto: SerieDto) =
+        SerieDomain(
             backdrop_path = tVDto.backdrop_path.orEmpty(),
             first_air_date = tVDto.first_air_date,
             genre_ids = tVDto.genre_ids,

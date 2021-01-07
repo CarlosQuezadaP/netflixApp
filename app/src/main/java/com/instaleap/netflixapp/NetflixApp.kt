@@ -13,10 +13,8 @@ import org.koin.androidx.fragment.koin.fragmentFactory
 import org.koin.core.context.startKoin
 
 class NetflixApp : Application() {
-
     override fun onCreate() {
         super.onCreate()
-
         startKoin {
             androidContext(this@NetflixApp)
             fragmentFactory()

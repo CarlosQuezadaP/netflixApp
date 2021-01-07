@@ -1,13 +1,13 @@
 package com.instaleap.netflixapp.diff
 
 import androidx.recyclerview.widget.DiffUtil
-import com.instaleap.domain.models.TVDomain
+import com.instaleap.domain.models.SerieDomain
 
-class SerieDiffCallback : DiffUtil.ItemCallback<TVDomain>() {
+class SerieDiffCallback : DiffUtil.ItemCallback<SerieDomain>() {
 
-    override fun areItemsTheSame(oldItem: TVDomain, newItem: TVDomain): Boolean =
+    override fun areItemsTheSame(oldItem: SerieDomain, newItem: SerieDomain): Boolean =
         oldItem.id == newItem.id
 
-    override fun areContentsTheSame(oldItem: TVDomain, newItem: TVDomain): Boolean =
+    override fun areContentsTheSame(oldItem: SerieDomain, newItem: SerieDomain): Boolean =
         oldItem == newItem
 }

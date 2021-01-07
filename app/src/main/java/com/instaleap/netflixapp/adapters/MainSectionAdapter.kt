@@ -8,7 +8,7 @@ import com.instaleap.domain.SectionModel
 import com.instaleap.netflixapp.R
 import com.instaleap.netflixapp.databinding.SectionRowBinding
 import com.instaleap.netflixapp.diff.SectionItemDiffCallback
-import com.instaleap.netflixapp.fragments.OnClickHomeItemSection
+import com.instaleap.netflixapp.handlers.OnClickHomeItemSection
 import com.instaleap.netflixapp.viewholder.SectionViewHolder
 
 class MainSectionAdapter(private val onClickHomeItemSection: OnClickHomeItemSection) :

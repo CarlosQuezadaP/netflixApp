@@ -1,11 +1,9 @@
 package com.instaleap.netflixapp.fragments
 
 import android.os.Bundle
-import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.ViewCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
@@ -21,7 +19,6 @@ class FragmentDetailMovie : Fragment() {
 
     private val args: FragmentDetailMovieArgs by navArgs()
     val moviedetailViewModel: DetailMovieViewModel by inject()
-    lateinit var mRootView: View
     lateinit var fragmentDetailBinding: FragmentDetailMovieBinding
 
 
@@ -29,7 +26,6 @@ class FragmentDetailMovie : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         fragmentDetailBinding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_detail_movie, container, false
@@ -38,29 +34,27 @@ class FragmentDetailMovie : Fragment() {
             lifecycleOwner = this@FragmentDetailMovie
             viewModel = moviedetailViewModel
         }
-
-
-        mRootView = fragmentDetailBinding.root
-
-
-        return mRootView
+        return fragmentDetailBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        moviedetailViewModel.getMovie(args.idMovie)
-
-
         initializeUI()
+        observeMovieDetail()
+    }
+
+    private fun observeMovieDetail() {
+        moviedetailViewModel.apply {
+            getMovie(args.idMovie)
+            movieDetail.observe(viewLifecycleOwner, {
+                fragmentDetailBinding.detailHeaderTitle.text = it.title
+                movie_detail_toolbar.title = it.title
+            })
+        }
     }
 
     private fun initializeUI() {
         applyToolbarMargin(movie_detail_toolbar)
-        moviedetailViewModel.movieDetail.observe(viewLifecycleOwner, {
-            mRootView.movie_detail_toolbar?.run {
-                title = it.title
-            }
-        })
     }
 
 

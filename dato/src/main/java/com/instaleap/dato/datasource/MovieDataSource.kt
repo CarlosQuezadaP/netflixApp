@@ -4,7 +4,7 @@ import com.instaleap.dato.IMovieApi
 import com.instaleap.dato.anticorruption.IDtoToDomainConverter
 import com.instaleap.dato.dto.GenreDto
 import com.instaleap.dato.dto.MovieDto
-import com.instaleap.dato.dto.TVDto
+import com.instaleap.dato.dto.SerieDto
 import com.instaleap.dato.responses.movieDatailResponse.MovieDetailDto
 import com.instaleap.dato.responses.serieDetailResponse.SerieDetailDto
 import com.instaleap.domain.models.*
@@ -28,13 +28,13 @@ class MovieDataSource constructor(
         return moviesDomain ?: throw Exception("No hay peliculas")
     }
 
-    override suspend fun getPopularTvs(page: Int): List<TVDomain> {
+    override suspend fun getPopularTvs(page: Int): List<SerieDomain> {
         val tvsResponse = iMovieApi.getTVSeries(page)
-        val tvs: List<TVDto>?
-        var tvsDomain: List<TVDomain>? = null
+        val series: List<SerieDto>?
+        var tvsDomain: List<SerieDomain>? = null
         if (tvsResponse.isSuccessful) {
-            tvs = tvsResponse.body()?.results
-            tvsDomain = tvs?.map {
+            series = tvsResponse.body()?.results
+            tvsDomain = series?.map {
                 converter.convertDtoToDomain(it)
             }
         }
@@ -93,26 +93,26 @@ class MovieDataSource constructor(
         return moviesDomain ?: throw Exception("No hay peliculas")
     }
 
-    override suspend fun getDiscoverTv(page: Int, idGenre: Int): List<TVDomain> {
+    override suspend fun getDiscoverTv(page: Int, idGenre: Int): List<SerieDomain> {
         val tvsResponse = iMovieApi.getTvListByGenre(idGenre, page)
-        val tvs: List<TVDto>?
-        var tvsDomain: List<TVDomain>? = null
+        val series: List<SerieDto>?
+        var tvsDomain: List<SerieDomain>? = null
         if (tvsResponse.isSuccessful) {
-            tvs = tvsResponse.body()?.results
-            tvsDomain = tvs?.map {
+            series = tvsResponse.body()?.results
+            tvsDomain = series?.map {
                 converter.convertDtoToDomain(it)
             }
         }
         return tvsDomain ?: throw Exception("No hay series")
     }
 
-    override suspend fun getDiscoverWithoutGenreTv(page: Int): List<TVDomain> {
+    override suspend fun getDiscoverWithoutGenreTv(page: Int): List<SerieDomain> {
         val tvsResponse = iMovieApi.getTvListWithoutGenre(page)
-        val tvs: List<TVDto>?
-        var tvsDomain: List<TVDomain>? = null
+        val series: List<SerieDto>?
+        var tvsDomain: List<SerieDomain>? = null
         if (tvsResponse.isSuccessful) {
-            tvs = tvsResponse.body()?.results
-            tvsDomain = tvs?.map {
+            series = tvsResponse.body()?.results
+            tvsDomain = series?.map {
                 converter.convertDtoToDomain(it)
             }
         }

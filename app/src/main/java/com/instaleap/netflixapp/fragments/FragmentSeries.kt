@@ -10,14 +10,18 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import com.instaleap.netflixapp.INavigateToList
 import com.instaleap.netflixapp.R
 import com.instaleap.netflixapp.activities.ListActivity
 import com.instaleap.netflixapp.adapters.SeriesAdapter
 import com.instaleap.netflixapp.databinding.FragmentSeriesBinding
+import com.instaleap.netflixapp.handlers.INavigateToList
+import com.instaleap.netflixapp.handlers.OnserieClick
 import com.instaleap.netflixapp.viewmodels.SeriesViewModels
 import kotlinx.android.synthetic.main.custom_toolbar_movies_series.view.*
 import kotlinx.android.synthetic.main.fragment_movies.view.*
+import kotlinx.android.synthetic.main.fragment_movies.view.include_toolbar
+import kotlinx.android.synthetic.main.fragment_series.*
+import kotlinx.android.synthetic.main.fragment_series.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 private const val REQUEST_CODE = 222
@@ -31,7 +35,6 @@ class FragmentSeries : Fragment(), INavigateToList, View.OnClickListener, Onseri
 
     private var genreId = 0
     private var genreName = ""
-    lateinit var mRootView: View
     lateinit var seriesAdapter: SeriesAdapter
 
     override fun onCreateView(
@@ -43,15 +46,24 @@ class FragmentSeries : Fragment(), INavigateToList, View.OnClickListener, Onseri
             R.layout.fragment_series, container, false
         )
 
-        fragmentSeriesBinding.onclick = this
-        fragmentSeriesBinding.type = "Series"
-        fragmentSeriesBinding.includeToolbar.imageViewNetflix.setOnClickListener(this)
-        mRootView = fragmentSeriesBinding.root
-        mRootView.include_toolbar.textView_tipe_text.text = "Series"
-        viewModelSeries.getSeries(1)
+        fragmentSeriesBinding.apply {
+            onclick = this@FragmentSeries
+            type = getString(R.string.series)
+            root.include_toolbar.textView_tipe_text.text = getString(R.string.series)
+            root.include_toolbar.imageViewNetflix.setOnClickListener(
+                this@FragmentSeries
+            )
+
+        }
+
+
+        return fragmentSeriesBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         setAdapter()
         getSeries()
-        return mRootView
     }
 
     private fun setAdapter() {
@@ -60,9 +72,12 @@ class FragmentSeries : Fragment(), INavigateToList, View.OnClickListener, Onseri
     }
 
     private fun getSeries() {
-        viewModelSeries.series.observe(requireActivity(), {
-            seriesAdapter.submitList(it)
-        })
+        viewModelSeries.apply {
+            getSeries(1)
+            series.observe(requireActivity(), {
+                seriesAdapter.submitList(it)
+            })
+        }
     }
 
     override fun onClick(type: String) {
@@ -73,7 +88,6 @@ class FragmentSeries : Fragment(), INavigateToList, View.OnClickListener, Onseri
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
-                //Obtener por genero
                 genreId = data?.getIntExtra(DATA_ID, 0) ?: 0
                 genreName = data?.getStringExtra(DATA_NAME) ?: ""
                 updateGenreName(genreName)
@@ -85,7 +99,7 @@ class FragmentSeries : Fragment(), INavigateToList, View.OnClickListener, Onseri
     }
 
     private fun updateGenreName(genreName: String) {
-        mRootView.include_toolbar.textView_series_text.text = genreName
+        fragmentSeriesBinding.root.include_toolbar.textView_series_text.text = genreName
     }
 
     override fun onClick(v: View?) {

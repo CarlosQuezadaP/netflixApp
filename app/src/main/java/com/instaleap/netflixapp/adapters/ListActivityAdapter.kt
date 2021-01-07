@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.instaleap.domain.models.GenreItemDomain
-import com.instaleap.netflixapp.ISelectGenre
+import com.instaleap.netflixapp.handlers.ISelectGenre
 import com.instaleap.netflixapp.R
+import com.instaleap.netflixapp.databinding.GenresItemLayoutBinding
 import com.instaleap.netflixapp.diff.GenresDiffCallback
 import com.instaleap.netflixapp.viewholder.GenresViewHolder
-import com.instaleap.netflixapp.databinding.GenresItemLayoutBinding
 
 class ListActivityAdapter(private val iSelectGenre: ISelectGenre) :
     ListAdapter<GenreItemDomain, GenresViewHolder>(GenresDiffCallback()) {
@@ -27,10 +27,14 @@ class ListActivityAdapter(private val iSelectGenre: ISelectGenre) :
     }
 
     override fun onBindViewHolder(holder: GenresViewHolder, position: Int) {
-        holder.bindTo(getItem(position))
-        holder.itemView.setOnClickListener {
-            iSelectGenre.selectGenre(getItem(position))
+
+        holder.apply {
+            bindTo(getItem(position))
+            itemView.setOnClickListener {
+                iSelectGenre.selectGenre(getItem(position))
+            }
         }
+
     }
 
 

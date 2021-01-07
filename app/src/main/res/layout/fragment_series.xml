@@ -10,7 +10,7 @@
 
         <variable
             name="onclick"
-            type="com.instaleap.netflixapp.INavigateToList" />
+            type="com.instaleap.netflixapp.handlers.INavigateToList" />
     </data>
 
     <androidx.core.widget.NestedScrollView xmlns:bind="http://schemas.android.com/apk/res-auto"

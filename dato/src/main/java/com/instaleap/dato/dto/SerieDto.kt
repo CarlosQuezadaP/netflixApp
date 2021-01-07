@@ -1,6 +1,6 @@
-package com.instaleap.domain.models
+package com.instaleap.dato.dto
 
-data class TVDomain(
+data class SerieDto(
     val backdrop_path: String,
     val first_air_date: String,
     val genre_ids: List<Int>,

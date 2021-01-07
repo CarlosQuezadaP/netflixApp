@@ -19,7 +19,6 @@ class DetailSerieFragment : Fragment() {
 
     private val args: DetailSerieFragmentArgs by navArgs()
     lateinit var detailSerieBinding: FragmentDetailSerieBinding
-    lateinit var mRootView: View
     val detailSerieViewModel: DetailSerieViewModel by inject()
 
     override fun onCreateView(
@@ -31,30 +30,32 @@ class DetailSerieFragment : Fragment() {
             inflater,
             R.layout.fragment_detail_serie, container, false
         )
-
-        mRootView = detailSerieBinding.root
-        detailSerieBinding.lifecycleOwner = this
-
-
-        return mRootView
-
+        detailSerieBinding.apply {
+            lifecycleOwner = this@DetailSerieFragment
+            viewModelDetailSerie = detailSerieViewModel
+        }
+        return detailSerieBinding.root
     }
 
+    private fun getSeriedetail() {
+        detailSerieViewModel.apply {
+            getSerieDetail(args.idSerie)
+            serieDetail.observe(viewLifecycleOwner, {
+                detailSerieBinding.detailHeaderTitle.text = it.name
+                movie_detail_toolbar.title = it.name
+            })
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        detailSerieBinding.viewModelDetailSerie = detailSerieViewModel
-        detailSerieViewModel.getSerieDetail(args.idSerie)
         initializeUI()
+        getSeriedetail()
     }
 
     private fun initializeUI() {
         applyToolbarMargin(movie_detail_toolbar)
-        detailSerieViewModel.serieDetail.observe(viewLifecycleOwner, {
-            mRootView.movie_detail_toolbar?.run {
-                title = it.name
-            }
-        })
+
     }
 
 }

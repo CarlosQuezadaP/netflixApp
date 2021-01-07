@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.instaleap.netflixapp.R
 import com.instaleap.netflixapp.adapters.MainSectionAdapter
+import com.instaleap.netflixapp.handlers.OnClickHomeItemSection
 import com.instaleap.netflixapp.viewmodels.HomeViewModel
 import kotlinx.android.synthetic.main.custom_toolbar_main.view.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
@@ -60,11 +61,12 @@ class HomeFragment : Fragment(), View.OnClickListener, OnClickHomeItemSection {
 
     override fun onClickItemSection(view: View, id: Int, type: String) {
         when (type) {
-            "Movie" -> {
+            getString(R.string.movie) -> {
                 val action = HomeFragmentDirections.actionHomeFragmentToFragmentDetailMovie(id)
                 Navigation.findNavController(view).navigate(action)
             }
-            "Serie" -> {
+
+            getString(R.string.serie) -> {
                 val action = HomeFragmentDirections.actionHomeFragmentToDetailTvFragment(id)
                 Navigation.findNavController(view).navigate(action)
             }

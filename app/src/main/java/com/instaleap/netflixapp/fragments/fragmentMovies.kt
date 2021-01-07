@@ -11,11 +11,12 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import com.instaleap.netflixapp.INavigateToList
+import com.instaleap.netflixapp.handlers.INavigateToList
 import com.instaleap.netflixapp.R
 import com.instaleap.netflixapp.activities.ListActivity
 import com.instaleap.netflixapp.adapters.MoviesAdapter
 import com.instaleap.netflixapp.databinding.FragmentMoviesBinding
+import com.instaleap.netflixapp.handlers.OnMovieClick
 import com.instaleap.netflixapp.viewmodels.MovieByGenreViewModel
 import kotlinx.android.synthetic.main.custom_toolbar_movies_series.view.*
 import kotlinx.android.synthetic.main.fragment_movies.view.*
@@ -30,7 +31,6 @@ class fragmentMovies : Fragment(), INavigateToList, View.OnClickListener, OnMovi
 
     val movieByGenreViewModel: MovieByGenreViewModel by inject()
     lateinit var fragmentMoviesBinding: FragmentMoviesBinding
-    lateinit var mRootView: View
     private var genreId = 0
     private var genreName = ""
     lateinit var moviesAdapter: MoviesAdapter
@@ -47,17 +47,19 @@ class fragmentMovies : Fragment(), INavigateToList, View.OnClickListener, OnMovi
 
         fragmentMoviesBinding.apply {
             onclick = this@fragmentMovies
-            type = "Movie"
+            type = getString(R.string.movie)
             includeToolbar.imageViewNetflix.setOnClickListener(this@fragmentMovies)
             includeToolbar.textViewTipeText.text = "Películas"
         }
 
-        mRootView = fragmentMoviesBinding.root
+        return fragmentMoviesBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         setupAdapter()
         getMovies()
-        movieByGenreViewModel.getMovies(1)
-
-        return mRootView
     }
 
     private fun setupAdapter() {
@@ -75,9 +77,12 @@ class fragmentMovies : Fragment(), INavigateToList, View.OnClickListener, OnMovi
     }
 
     private fun getMovies() {
-        movieByGenreViewModel.movies.observe(requireActivity(), {
-            moviesAdapter.submitList(it)
-        })
+        movieByGenreViewModel.apply {
+            getMovies(1)
+            movies.observe(requireActivity(), {
+                moviesAdapter.submitList(it)
+            })
+        }
     }
 
 
@@ -89,7 +94,6 @@ class fragmentMovies : Fragment(), INavigateToList, View.OnClickListener, OnMovi
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                //Obtener por genero
                 genreId = data?.getIntExtra(DATA_ID, 0) ?: 0
                 genreName = data?.getStringExtra(DATA_NAME) ?: ""
                 updateGenreName(genreName)
@@ -101,7 +105,7 @@ class fragmentMovies : Fragment(), INavigateToList, View.OnClickListener, OnMovi
     }
 
     private fun updateGenreName(genreName: String) {
-        mRootView.include_toolbar.textView_series_text.text = genreName
+        fragmentMoviesBinding.includeToolbar.textViewTipeText.text = genreName
     }
 
     override fun onClick(v: View?) {
@@ -114,7 +118,6 @@ class fragmentMovies : Fragment(), INavigateToList, View.OnClickListener, OnMovi
 
     override fun onMovieClick(view: View, movieID: Int) {
         val action = fragmentMoviesDirections.actionFragmentMoviesToFragmentDetailMovie(movieID)
-        4
         Navigation.findNavController(view).navigate(action)
     }
 

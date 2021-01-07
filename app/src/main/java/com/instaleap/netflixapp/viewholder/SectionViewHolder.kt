@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.instaleap.domain.SectionModel
 import com.instaleap.netflixapp.adapters.ChildSectionAdapter
 import com.instaleap.netflixapp.databinding.SectionRowBinding
-import com.instaleap.netflixapp.fragments.OnClickHomeItemSection
+import com.instaleap.netflixapp.handlers.OnClickHomeItemSection
 
 class SectionViewHolder(
     private val sectionRowBinding: SectionRowBinding,
@@ -13,10 +13,12 @@ class SectionViewHolder(
     RecyclerView.ViewHolder(sectionRowBinding.root) {
 
     fun bindTo(section: SectionModel) {
-        sectionRowBinding.textViewSectionTitle.text = section.name
         val childSectionAdapter = ChildSectionAdapter(onClickHomeItemSection)
         childSectionAdapter.submitList(section.characters)
-        sectionRowBinding.recyclerViewChild.adapter = childSectionAdapter
+        sectionRowBinding.apply {
+            textViewSectionTitle.text = section.name
+            recyclerViewChild.adapter = childSectionAdapter
+        }
     }
 }
 
