@@ -15,10 +15,18 @@
             app:destination="@id/fragmentMovies" />
         <action
             android:id="@+id/action_homeFragment_to_detailTvFragment"
-            app:destination="@id/detailSerieFragment" />
+            app:destination="@id/detailSerieFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_homeFragment_to_fragmentDetailMovie"
-            app:destination="@id/fragmentDetailMovie" />
+            app:destination="@id/fragmentDetailMovie"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
@@ -30,7 +38,11 @@
             app:destination="@id/fragmentSeries" />
         <action
             android:id="@+id/action_fragmentMovies_to_fragmentDetailMovie"
-            app:destination="@id/fragmentDetailMovie" />
+            app:destination="@id/fragmentDetailMovie"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
@@ -39,7 +51,11 @@
         android:label="Tv Series">
         <action
             android:id="@+id/action_fragmentSeries_to_detailTvFragment"
-            app:destination="@id/detailSerieFragment" />
+            app:destination="@id/detailSerieFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/fragmentDetailMovie"

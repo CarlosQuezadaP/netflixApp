@@ -1,9 +1,11 @@
 package com.instaleap.netflixapp.fragments
 
 import android.os.Bundle
+import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.ViewCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
@@ -32,9 +34,13 @@ class FragmentDetailMovie : Fragment() {
             inflater,
             R.layout.fragment_detail_movie, container, false
         )
+        fragmentDetailBinding.apply {
+            lifecycleOwner = this@FragmentDetailMovie
+            viewModel = moviedetailViewModel
+        }
+
 
         mRootView = fragmentDetailBinding.root
-        fragmentDetailBinding.lifecycleOwner = this
 
 
         return mRootView
@@ -42,8 +48,9 @@ class FragmentDetailMovie : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        fragmentDetailBinding.viewModel = moviedetailViewModel
         moviedetailViewModel.getMovie(args.idMovie)
+
+
         initializeUI()
     }
 

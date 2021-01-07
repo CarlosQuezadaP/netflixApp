@@ -45,17 +45,16 @@ class fragmentMovies : Fragment(), INavigateToList, View.OnClickListener, OnMovi
             R.layout.fragment_movies, container, false
         )
 
-        fragmentMoviesBinding.onclick = this
-        fragmentMoviesBinding.type = "Movie"
+        fragmentMoviesBinding.apply {
+            onclick = this@fragmentMovies
+            type = "Movie"
+            includeToolbar.imageViewNetflix.setOnClickListener(this@fragmentMovies)
+            includeToolbar.textViewTipeText.text = "Películas"
+        }
 
-        fragmentMoviesBinding.includeToolbar.imageViewNetflix.setOnClickListener(this)
         mRootView = fragmentMoviesBinding.root
-
-
-        mRootView.include_toolbar.textView_tipe_text.text = "Películas"
         setupAdapter()
         getMovies()
-
         movieByGenreViewModel.getMovies(1)
 
         return mRootView
@@ -63,7 +62,16 @@ class fragmentMovies : Fragment(), INavigateToList, View.OnClickListener, OnMovi
 
     private fun setupAdapter() {
         moviesAdapter = MoviesAdapter(this)
-        fragmentMoviesBinding.recyclerViewMovies.adapter = moviesAdapter
+        fragmentMoviesBinding.recyclerViewMovies.apply {
+            adapter = moviesAdapter
+            postponeEnterTransition()
+            viewTreeObserver
+                .addOnPreDrawListener {
+                    startPostponedEnterTransition()
+                    true
+                }
+        }
+
     }
 
     private fun getMovies() {
@@ -106,6 +114,7 @@ class fragmentMovies : Fragment(), INavigateToList, View.OnClickListener, OnMovi
 
     override fun onMovieClick(view: View, movieID: Int) {
         val action = fragmentMoviesDirections.actionFragmentMoviesToFragmentDetailMovie(movieID)
+        4
         Navigation.findNavController(view).navigate(action)
     }
 
