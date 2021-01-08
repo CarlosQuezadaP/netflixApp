@@ -49,13 +49,10 @@ class DetailSerieFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initializeUI()
         getSeriedetail()
     }
 
-    private fun initializeUI() {
-        applyToolbarMargin(movie_detail_toolbar)
 
-    }
+
 
 }

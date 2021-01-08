@@ -8,7 +8,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.instaleap.netflixapp.R
-import com.instaleap.netflixapp.applyToolbarMargin
 import com.instaleap.netflixapp.databinding.FragmentDetailMovieBinding
 import com.instaleap.netflixapp.viewmodels.DetailMovieViewModel
 import kotlinx.android.synthetic.main.fragment_detail_movie.*
@@ -39,7 +38,6 @@ class FragmentDetailMovie : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initializeUI()
         observeMovieDetail()
     }
 
@@ -53,9 +51,7 @@ class FragmentDetailMovie : Fragment() {
         }
     }
 
-    private fun initializeUI() {
-        applyToolbarMargin(movie_detail_toolbar)
-    }
+
 
 
 }

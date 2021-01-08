@@ -13,8 +13,8 @@ import java.util.concurrent.TimeUnit
 const val NETWORK_AVAILABLE_AGE = 60
 
 val networkModule = module {
-    val connectTimeout: Long = 40// 20s
-    val readTimeout: Long = 40 // 20s
+    val connectTimeout: Long = 10// 20s
+    val readTimeout: Long = 10 // 20s
 
     fun provideHttpClient(): OkHttpClient {
         val okHttpClientBuilder = OkHttpClient.Builder()
