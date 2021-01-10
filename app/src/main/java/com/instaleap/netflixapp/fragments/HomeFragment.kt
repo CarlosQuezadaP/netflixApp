@@ -6,20 +6,44 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import com.instaleap.dato.datasource.MovieDataSource2
+import com.instaleap.dato.sealed.Resource
 import com.instaleap.netflixapp.R
 import com.instaleap.netflixapp.adapters.MainSectionAdapter
+import com.instaleap.netflixapp.handleApiError
 import com.instaleap.netflixapp.handlers.OnClickHomeItemSection
 import com.instaleap.netflixapp.viewmodels.HomeViewModel
+import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.custom_toolbar_main.view.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
 class HomeFragment : Fragment(), View.OnClickListener, OnClickHomeItemSection {
 
 
     val homeViewModel: HomeViewModel by inject()
+    val movieDataSource2: MovieDataSource2 by inject()
     lateinit var content: View
     lateinit var sectionAdapter: MainSectionAdapter
+
+
+    private suspend fun algo() {
+        GlobalScope.launch {
+            var resource = movieDataSource2.getDiscoverMovie()
+            when (resource) {
+                is Resource.Success -> {
+                    val moves = resource.value
+                }
+                is Resource.Failure -> {
+                    activity?.bottom_navigation?.let {
+                        handleApiError(resource, it)
+                    }
+                }
+            }
+        }
+    }
 
 
     override fun onCreateView(
@@ -29,10 +53,14 @@ class HomeFragment : Fragment(), View.OnClickListener, OnClickHomeItemSection {
         content = inflater.inflate(R.layout.fragment_home, container, false)
 
         configureAdapters()
-        getAllSections()
+        //   getAllSections()
 
         content.textView_movies_text.setOnClickListener(this)
         content.textView_series_text.setOnClickListener(this)
+
+        GlobalScope.launch {
+            algo()
+        }
         return content
     }
 
