@@ -8,7 +8,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.instaleap.netflixapp.R
-import com.instaleap.netflixapp.applyToolbarMargin
 import com.instaleap.netflixapp.databinding.FragmentDetailSerieBinding
 import com.instaleap.netflixapp.viewmodels.DetailSerieViewModel
 import kotlinx.android.synthetic.main.fragment_detail_movie.*
