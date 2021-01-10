@@ -2,6 +2,7 @@ package com.instaleap.netflixapp.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.instaleap.core.Resource
 import com.instaleap.domain.models.GenreItemDomain
 import com.instaleap.usecases.IGetAllMoviesGenresUseCase
 import kotlinx.coroutines.*
@@ -21,7 +22,14 @@ class GenresMovieViewModel(private val iGetAllMoviesGenresUseCase: IGetAllMovies
         job = coroutineScope.launch {
             val response = iGetAllMoviesGenresUseCase.invoke()
             withContext(Dispatchers.Main) {
-                moviesGenres.value = response
+                when (response) {
+                    is Resource.Success -> {
+                        moviesGenres.value = response.value
+                    }
+                    is Resource.Failure -> {
+
+                    }
+                }
             }
         }
     }

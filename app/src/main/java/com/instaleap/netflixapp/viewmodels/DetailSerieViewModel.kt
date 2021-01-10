@@ -2,6 +2,7 @@ package com.instaleap.netflixapp.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.instaleap.core.Resource
 import com.instaleap.domain.models.SerieDetailDomain
 import com.instaleap.usecases.IGetSerieDetailUseCase
 import kotlinx.coroutines.*
@@ -19,7 +20,15 @@ class DetailSerieViewModel(
         job = coroutineScope.launch {
             val response = iGetSerieDetailUseCase.invoke(movieId)
             withContext(Dispatchers.Main) {
-                serieDetail.value = response
+
+                when (response) {
+                    is Resource.Success -> {
+                        serieDetail.value = response.value
+                    }
+                    is Resource.Failure -> {
+
+                    }
+                }
             }
         }
     }
