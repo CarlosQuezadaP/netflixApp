@@ -1,65 +1,39 @@
 package com.instaleap.usecases
 
-import com.instaleap.domain.CharacterModel
-import com.instaleap.domain.SectionModel
+import com.instaleap.core.Resource
 import com.instaleap.domain.models.*
 import com.instaleap.usecases.repository.IMovieRepository
 
 
-class GetAllModelsSectionsUseCase(private val iMovieRepository: IMovieRepository) :
-    IGetAllModelsSectionsUseCase {
+class GetPopularMoviesUseCase(private val iMovieRepository: IMovieRepository) :
+    IGetPopularMoviesUseCase {
 
-
-    override suspend fun invoke(page: Int): List<SectionModel> {
-        val sectionMovie =
-            generateMovieSection(getAllMovies(page))
-        val sectionSerie = generateSerieSection(getAllSeries(page))
-        return listOf(sectionMovie, sectionSerie)
-    }
-
-    private suspend fun getAllMovies(page: Int): List<MovieItemDomain> {
+    override suspend fun invoke(page: Int): Resource<List<MovieItemDomain>> {
         return iMovieRepository.getPopularMovies(page)
     }
 
-    private suspend fun getAllSeries(page: Int): List<SerieDomain> {
+}
+
+class GetPopularSeriesUseCase(private val iMovieRepository: IMovieRepository) :
+    IGetPopularSeriesUseCase {
+
+    override suspend fun invoke(page: Int): Resource<List<SerieDomain>> {
         return iMovieRepository.getPopularTvs(page)
     }
-
-    private fun generateMovieSection(
-        movies: List<MovieItemDomain>,
-    ): SectionModel {
-        val moviesModels = movies
-
-        val list = moviesModels.map {
-            CharacterModel(it.posterPath, "Movie", it.id)
-        }
-
-        return SectionModel("Popular Movies", list)
-    }
-
-    private fun generateSerieSection(
-        series: List<SerieDomain>,
-    ): SectionModel {
-        val moviesModels = series
-
-        val list = moviesModels.map {
-            CharacterModel(it.poster_path, "Serie", it.id)
-        }
-        return SectionModel("Popular Series", list)
-    }
 }
+
 
 class GetAllMoviesGenresUseCase(private val iMovieRepository: IMovieRepository) :
     IGetAllMoviesGenresUseCase {
 
-    override suspend fun invoke(): List<GenreItemDomain> {
+    override suspend fun invoke(): Resource<List<GenreItemDomain>> {
         return iMovieRepository.getGenresMovies()
     }
 }
 
 class GetMoviesByGenreUseCase(private val iMovieRepository: IMovieRepository) :
     IGetMoviesByGenreUseCase {
-    override suspend fun invoke(page: Int, genreID: Int): List<MovieItemDomain> {
+    override suspend fun invoke(page: Int, genreID: Int): Resource<List<MovieItemDomain>> {
         if (genreID != 0) {
             return iMovieRepository.getMoviesByGenre(page, genreID)
         }
@@ -69,7 +43,7 @@ class GetMoviesByGenreUseCase(private val iMovieRepository: IMovieRepository) :
 
 class GetSeriesByGenreUseCase(private val iMovieRepository: IMovieRepository) :
     IGetSeriesByGenreUseCase {
-    override suspend fun invoke(page: Int, genreID: Int): List<SerieDomain> {
+    override suspend fun invoke(page: Int, genreID: Int): Resource<List<SerieDomain>> {
         if (genreID != 0) {
             return iMovieRepository.getTvsByGenre(page, genreID)
         }
@@ -79,39 +53,42 @@ class GetSeriesByGenreUseCase(private val iMovieRepository: IMovieRepository) :
 
 class GetMovieDetailUseCase(private val iMovieRepository: IMovieRepository) :
     IGetMovieDetailUseCase {
-    override suspend fun invoke(movieId: Int): MovieDetailDomain {
+    override suspend fun invoke(movieId: Int): Resource<MovieDetailDomain> {
         return iMovieRepository.getDetailMovie(movieId)
     }
 }
 
 class GetSerieDetailUseCase(private val iMovieRepository: IMovieRepository) :
     IGetSerieDetailUseCase {
-    override suspend fun invoke(movieId: Int): SerieDetailDomain {
+    override suspend fun invoke(movieId: Int): Resource<SerieDetailDomain> {
         return iMovieRepository.getDetailSerie(movieId)
     }
 }
 
+interface IGetPopularMoviesUseCase {
+    suspend fun invoke(page: Int): Resource<List<MovieItemDomain>>
+}
 
-interface IGetAllModelsSectionsUseCase {
-    suspend fun invoke(page: Int): List<SectionModel>
+interface IGetPopularSeriesUseCase {
+    suspend fun invoke(page: Int): Resource<List<SerieDomain>>
 }
 
 interface IGetAllMoviesGenresUseCase {
-    suspend fun invoke(): List<GenreItemDomain>
+    suspend fun invoke(): Resource<List<GenreItemDomain>>
 }
 
 interface IGetMoviesByGenreUseCase {
-    suspend fun invoke(page: Int, genreID: Int): List<MovieItemDomain>
+    suspend fun invoke(page: Int, genreID: Int): Resource<List<MovieItemDomain>>
 }
 
 interface IGetSeriesByGenreUseCase {
-    suspend fun invoke(page: Int, genreID: Int): List<SerieDomain>
+    suspend fun invoke(page: Int, genreID: Int): Resource<List<SerieDomain>>
 }
 
 interface IGetMovieDetailUseCase {
-    suspend fun invoke(movieId: Int): MovieDetailDomain
+    suspend fun invoke(movieId: Int): Resource<MovieDetailDomain>
 }
 
 interface IGetSerieDetailUseCase {
-    suspend fun invoke(movieId: Int): SerieDetailDomain
+    suspend fun invoke(movieId: Int): Resource<SerieDetailDomain>
 }

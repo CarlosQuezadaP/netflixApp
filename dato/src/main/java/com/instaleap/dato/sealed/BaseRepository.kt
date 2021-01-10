@@ -1,6 +1,7 @@
-package khalid.com.newssearcherv4.repositories
+package com.instaleap.dato.sealed
 
-import com.instaleap.dato.sealed.Resource
+
+import com.instaleap.core.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
@@ -39,7 +40,9 @@ open class BaseRepository {
     inline fun <T, R> Resource<T>.map(transform: (T) -> R): Resource<R> {
         return when (this) {
             is Resource.Failure -> this
-            is Resource.Success -> Resource.Success(transform(value))
+            is Resource.Success -> Resource.Success(
+                transform(value)
+            )
             else -> Resource.Loading
         }
     }

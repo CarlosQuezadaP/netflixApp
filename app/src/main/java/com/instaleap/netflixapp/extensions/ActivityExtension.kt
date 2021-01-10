@@ -4,7 +4,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
-import com.instaleap.dato.sealed.Resource
+import com.instaleap.core.Resource
 
 fun Fragment.handleApiError(
     failure: Resource.Failure,
