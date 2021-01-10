@@ -6,12 +6,9 @@ import com.instaleap.netflixapp.databinding.GenresItemLayoutBinding
 
 class GenresViewHolder(private val genresItemLayoutBinding: GenresItemLayoutBinding) :
     RecyclerView.ViewHolder(genresItemLayoutBinding.root) {
-
     fun bindTo(genre: GenreItemDomain) {
         genresItemLayoutBinding.genre = genre.name
     }
-
-
 }
 
 

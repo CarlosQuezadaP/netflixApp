@@ -16,7 +16,7 @@ class MovieByGenreViewModel(
     private var coroutineScope = CoroutineScope(Dispatchers.IO)
 
 
-    fun getMovies(page: Int, genreId: Int = 0) {
+    protected fun getMovies(page: Int, genreId: Int = 0) {
         job = coroutineScope.launch {
             val response = iGetMoviesByGenreUseCase.invoke(page, genreId)
             withContext(Dispatchers.Main) {

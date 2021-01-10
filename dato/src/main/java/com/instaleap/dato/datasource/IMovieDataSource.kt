@@ -16,6 +16,4 @@ interface IMovieDataSource {
     suspend fun getSerieDetail(serieID: Int): Resource<SerieDetailDomain>
 
 
-
-
 }

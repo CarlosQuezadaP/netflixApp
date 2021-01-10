@@ -29,11 +29,11 @@ private const val DATA_NAME = "GENRE_NAME"
 
 class fragmentMovies : Fragment(), INavigateToList, View.OnClickListener, OnMovieClick {
 
-    val movieByGenreViewModel: MovieByGenreViewModel by inject()
-    lateinit var fragmentMoviesBinding: FragmentMoviesBinding
+    private val movieByGenreViewModel: MovieByGenreViewModel by inject()
+    private lateinit var fragmentMoviesBinding: FragmentMoviesBinding
     private var genreId = 0
     private var genreName = ""
-    lateinit var moviesAdapter: MoviesAdapter
+    private lateinit var moviesAdapter: MoviesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

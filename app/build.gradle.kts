@@ -26,8 +26,6 @@ android {
         buildConfigField("String", "IMAGES_URL", "\"https://image.tmdb.org/t/p/w500\"")
         buildConfigField("String", "SERVER_URL", "\"https://api.themoviedb.org/3/\"")
         buildConfigField("String", "IMAGES_BACKDROP_URL", "\"https://image.tmdb.org/t/p/original\"")
-
-
     }
 
     buildTypes {
@@ -57,7 +55,7 @@ android {
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib:${rootProject.extra["kotlin_version"]}")
-
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation(Deps.kotlin)
     implementation(Deps.core_ktx)
     implementation(Deps.appcompat)
@@ -69,32 +67,25 @@ dependencies {
     implementation(Deps.Coroutine.coroutines_android)
     implementation(Deps.Coroutine.coroutines_core)
     implementation(Deps.glide)
+    implementation(Deps.Koin.koin)
     implementation("androidx.appcompat:appcompat:1.1.0")
     implementation("androidx.constraintlayout:constraintlayout:1.1.3")
-    kapt(Deps.glide_annotationProcessor)
     implementation(Deps.Core.navigationFragmentKtx)
     implementation(Deps.Core.navigationUiKtx)
     implementation(Deps.Core.constraintlayout)
-
+    implementation(Deps.Lifecycle.livedataKtx)
+    implementation(Deps.Lifecycle.viewmodelKtx)
+    implementation(Deps.Lifecycle.savedStateViewModel)
+    implementation(Deps.Lifecycle.extensions)
+    implementation(Deps.Lifecycle.common)
+    implementation(Deps.Lifecycle.runtime)
     kapt(Deps.Lifecycle.kapt_compiler)
-    api(Deps.Lifecycle.livedataKtx)
-    api(Deps.Lifecycle.viewmodelKtx)
-    api(Deps.Lifecycle.savedStateViewModel)
-    api(Deps.Lifecycle.extensions)
-    api(Deps.Lifecycle.common)
-    api(Deps.Lifecycle.runtime)
-
-
-
-    implementation(appdependencies.Deps.Koin.koin)
+    kapt(Deps.glide_annotationProcessor)
     api(project(":core"))
     api(project(":dato"))
     api(project(":hardware"))
     api(project(":usecases"))
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
-
     testImplementation(Deps.junit)
-
     androidTestImplementation(Deps.junit2)
     androidTestImplementation(Deps.espresso)
 }

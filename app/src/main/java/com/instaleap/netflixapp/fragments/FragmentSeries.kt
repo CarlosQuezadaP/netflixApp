@@ -30,12 +30,12 @@ private const val DATA_NAME = "GENRE_NAME"
 
 class FragmentSeries : Fragment(), INavigateToList, View.OnClickListener, OnserieClick {
 
-    val viewModelSeries: SeriesViewModels by viewModel()
-    lateinit var fragmentSeriesBinding: FragmentSeriesBinding
+    private val viewModelSeries: SeriesViewModels by viewModel()
+    private lateinit var fragmentSeriesBinding: FragmentSeriesBinding
 
     private var genreId = 0
     private var genreName = ""
-    lateinit var seriesAdapter: SeriesAdapter
+    private lateinit var seriesAdapter: SeriesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

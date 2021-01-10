@@ -4,14 +4,11 @@ import com.instaleap.core.Resource
 import com.instaleap.domain.models.*
 import com.instaleap.usecases.repository.IMovieRepository
 
-
 class GetPopularMoviesUseCase(private val iMovieRepository: IMovieRepository) :
     IGetPopularMoviesUseCase {
-
     override suspend fun invoke(page: Int): Resource<List<MovieItemDomain>> {
         return iMovieRepository.getPopularMovies(page)
     }
-
 }
 
 class GetPopularSeriesUseCase(private val iMovieRepository: IMovieRepository) :
@@ -21,7 +18,6 @@ class GetPopularSeriesUseCase(private val iMovieRepository: IMovieRepository) :
         return iMovieRepository.getPopularTvs(page)
     }
 }
-
 
 class GetAllMoviesGenresUseCase(private val iMovieRepository: IMovieRepository) :
     IGetAllMoviesGenresUseCase {

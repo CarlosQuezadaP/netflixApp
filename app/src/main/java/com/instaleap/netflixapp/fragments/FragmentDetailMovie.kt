@@ -17,7 +17,7 @@ import org.koin.android.ext.android.inject
 class FragmentDetailMovie : Fragment() {
 
     private val args: FragmentDetailMovieArgs by navArgs()
-    val moviedetailViewModel: DetailMovieViewModel by inject()
+    private val moviedetailViewModel: DetailMovieViewModel by inject()
     lateinit var fragmentDetailBinding: FragmentDetailMovieBinding
 
 

@@ -17,9 +17,9 @@ import org.koin.android.ext.android.inject
 class HomeFragment : Fragment(), View.OnClickListener, OnClickHomeItemSection {
 
 
-    val homeViewModel: HomeViewModel by inject()
-    lateinit var content: View
-    lateinit var sectionAdapter: MainSectionAdapter
+    private val homeViewModel: HomeViewModel by inject()
+    private lateinit var content: View
+    private lateinit var sectionAdapter: MainSectionAdapter
 
 
     override fun onCreateView(

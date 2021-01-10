@@ -4,9 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.instaleap.domain.models.GenreItemDomain
-import com.instaleap.netflixapp.handlers.ISelectGenre
 import com.instaleap.netflixapp.adapters.ListActivityAdapter
 import com.instaleap.netflixapp.databinding.ActivityListBinding
+import com.instaleap.netflixapp.handlers.ISelectGenre
 import com.instaleap.netflixapp.viewmodels.GenresMovieViewModel
 import kotlinx.android.synthetic.main.activity_list.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -47,9 +47,10 @@ class ListActivity : AppCompatActivity(), ISelectGenre {
 
     override fun selectGenre(genreItemDomain: GenreItemDomain) {
         val genre = genreItemDomain
-        val intent = Intent()
-        intent.putExtra(DATA_NAME, genre.name)
-        intent.putExtra(DATA_ID, genre.id)
+        val intent = Intent().apply {
+            putExtra(DATA_NAME, genre.name)
+            putExtra(DATA_ID, genre.id)
+        }
         setResult(RESULT_OK, intent)
         finish()
     }

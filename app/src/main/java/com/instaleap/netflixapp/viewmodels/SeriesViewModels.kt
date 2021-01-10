@@ -16,7 +16,7 @@ class SeriesViewModels(
     private var coroutineScope = CoroutineScope(Dispatchers.IO)
 
 
-    fun getSeries(page: Int, genreId: Int = 0) {
+    protected fun getSeries(page: Int, genreId: Int = 0) {
         job = coroutineScope.launch {
             val response = iGetSeriesByGenreUseCase.invoke(page, genreId)
             withContext(Dispatchers.Main) {

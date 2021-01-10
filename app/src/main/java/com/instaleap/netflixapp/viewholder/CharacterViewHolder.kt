@@ -7,9 +7,7 @@ import com.instaleap.netflixapp.databinding.SectionItemLayoutBinding
 class CharacterViewHolder(private val movieItemLayoutBinding: SectionItemLayoutBinding) :
     RecyclerView.ViewHolder(movieItemLayoutBinding.root) {
 
-
      fun bindTo(characterModel: CharacterModel) {
          movieItemLayoutBinding.imageUrl = characterModel.url
     }
-
 }

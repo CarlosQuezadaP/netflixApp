@@ -18,7 +18,7 @@ class DetailSerieFragment : Fragment() {
 
     private val args: DetailSerieFragmentArgs by navArgs()
     lateinit var detailSerieBinding: FragmentDetailSerieBinding
-    val detailSerieViewModel: DetailSerieViewModel by inject()
+    private val detailSerieViewModel: DetailSerieViewModel by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,8 +50,6 @@ class DetailSerieFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         getSeriedetail()
     }
-
-
 
 
 }

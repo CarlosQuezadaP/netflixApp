@@ -41,7 +41,7 @@ fun bindReleaseDate(view: TextView, releaseDate: String?) {
 fun bindBackDrop(view: ImageView, backdrop_path: String?, poster_path: String?) {
 
 
-    var imageUrl: String = ""
+    var imageUrl = ""
 
     if (!backdrop_path.isNullOrEmpty()) {
         imageUrl = "${BuildConfig.IMAGES_BACKDROP_URL}$backdrop_path"
