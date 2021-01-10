@@ -63,7 +63,6 @@ dependencies {
     implementation(Deps.appcompat)
     implementation(Deps.material)
     implementation(Deps.constraintlayout)
-    implementation(Deps.Koin.koin)
     implementation(Deps.Koin.koinFragment)
     implementation(Deps.Koin.koinScope)
     implementation(Deps.Koin.koinViewModel)
@@ -87,6 +86,8 @@ dependencies {
 
 
 
+    implementation(appdependencies.Deps.Koin.koin)
+    api(project(":core"))
     api(project(":dato"))
     api(project(":hardware"))
     api(project(":usecases"))

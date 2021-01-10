@@ -39,12 +39,13 @@ android {
 }
 
 dependencies {
-    implementation(appdependencies.Deps.Koin.koin)
     implementation(appdependencies.Deps.Retrofit.core)
     implementation(appdependencies.Deps.Retrofit.gson)
     implementation(appdependencies.Deps.Okhttp.okhttp)
     implementation(appdependencies.Deps.Okhttp.logging)
     implementation(appdependencies.Deps.Coroutine.coroutines_android)
     implementation(appdependencies.Deps.Coroutine.coroutines_core)
+    implementation(appdependencies.Deps.Koin.koin)
+    api(project(":core"))
     api(project(":usecases"))
 }

@@ -37,6 +37,7 @@ android {
 }
 
 dependencies {
-    api(appdependencies.Deps.Koin.koin)
+    implementation(appdependencies.Deps.Koin.koin)
     api(project(":domain"))
+    api(project(":core"))
 }

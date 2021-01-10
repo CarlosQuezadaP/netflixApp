@@ -1,3 +1,4 @@
+include ':core'
 include ':usecases'
 include ':hardware'
 include ':domain'
