@@ -1,24 +1,41 @@
 package com.instaleap.netflixapp
 
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
+import android.view.View
 import androidx.fragment.app.Fragment
-import com.google.android.material.appbar.CollapsingToolbarLayout
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.snackbar.Snackbar
+import com.instaleap.dato.sealed.Resource
 
-fun Fragment.applyToolbarMargin(toolbar: Toolbar) {
-    if (checkIsMaterialVersion()) {
-        toolbar.layoutParams =
-            (toolbar.layoutParams as CollapsingToolbarLayout.LayoutParams).apply {
-                topMargin = getStatusBarSize()
-            }
+fun Fragment.handleApiError(
+    failure: Resource.Failure,
+    bottomNavigationView: BottomNavigationView
+) {
+    val result = when {
+        failure.isNetworkError ->
+            "Please check your internet connection"
+
+        failure.errorCode == 404 -> {
+            "Not content Found, ${failure.errorCode}"
+        }
+        else -> {
+            failure.errorBody ?: "Error ${failure.errorCode}"
+        }
     }
-}
 
-private fun Fragment.getStatusBarSize(): Int {
-    val idStatusBarHeight = resources.getIdentifier("status_bar_height", "dimen", "android")
-    return if (idStatusBarHeight > 0) {
-        resources.getDimensionPixelSize(idStatusBarHeight)
-    } else 0
+    requireView().snackbar(result, bottomNavigationView)
 }
 
 
+fun View.snackbar(
+    message: String,
+    bottomNavigationView: BottomNavigationView
+) {
+    Snackbar.make(this, message, Snackbar.LENGTH_INDEFINITE).apply {
+        anchorView = bottomNavigationView
+        setAction("ok") {
+            this.dismiss()
+        }
+        show()
+    }
+
+}
