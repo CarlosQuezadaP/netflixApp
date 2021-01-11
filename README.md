@@ -23,7 +23,7 @@ En este proyecto se utiliza el patron de presentación MVVM, Jetpack Components 
 - Material design
 - Clean Architecture
 
-# Modulos
+### Modulos
 1) app
 Modulo encargado de gestionar toda la interfaz de usuario
 2) buildSrc
