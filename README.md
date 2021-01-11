@@ -3,6 +3,9 @@
 Clean Architecture - MVVM  - Multi Modulos
 En este proyecto se utiliza el patron de presentación MVVM, Jetpack Components y Clean architecture.
 
+## MAD SCORE
+https://madscorecard.withgoogle.com/scorecards/3960593/
+
 ### Librerias
 1) JetPack: 
 - ViewModel (https://developer.android.com/topic/libraries/architecture/viewmodel) 
