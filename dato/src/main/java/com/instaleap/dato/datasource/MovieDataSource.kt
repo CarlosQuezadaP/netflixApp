@@ -2,7 +2,7 @@ package com.instaleap.dato.datasource
 
 import com.instaleap.dato.IMovieApi
 import com.instaleap.dato.anticorruption.IDtoToDomainConverter
-import com.instaleap.dato.sealed.BaseRepository
+import com.instaleap.dato.base.BaseRepository
 
 class MovieDataSource constructor(
     private val iMovieApi: IMovieApi,

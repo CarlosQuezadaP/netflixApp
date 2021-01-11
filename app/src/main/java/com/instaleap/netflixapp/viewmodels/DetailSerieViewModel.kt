@@ -16,7 +16,7 @@ class DetailSerieViewModel(
     private var coroutineScope = CoroutineScope(Dispatchers.IO)
 
 
-    protected fun getSerieDetail(movieId: Int) {
+    fun getSerieDetail(movieId: Int) {
         job = coroutineScope.launch {
             val response = iGetSerieDetailUseCase.invoke(movieId)
             withContext(Dispatchers.Main) {

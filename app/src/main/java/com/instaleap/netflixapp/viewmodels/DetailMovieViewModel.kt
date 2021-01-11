@@ -16,7 +16,7 @@ class DetailMovieViewModel(
     private var coroutineScope = CoroutineScope(Dispatchers.IO)
 
 
-    protected fun getMovie(movieId: Int) {
+    fun getMovie(movieId: Int) {
         job = coroutineScope.launch {
             val response = iGetMovieDetailUseCase.invoke(movieId)
             withContext(Dispatchers.Main) {
@@ -28,7 +28,6 @@ class DetailMovieViewModel(
 
                     }
                 }
-
             }
         }
     }
