@@ -1,5 +1,6 @@
 package com.instaleap.netflixapp.viewmodels
 
+import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.instaleap.core.Resource
@@ -14,18 +15,24 @@ class SeriesViewModels(
     var series = MutableLiveData<List<SerieDomain>>()
     private var job: Job? = null
     private var coroutineScope = CoroutineScope(Dispatchers.IO)
+    var isLoading = ObservableBoolean()
+    var failure = ObservableBoolean()
 
 
-    protected fun getSeries(page: Int, genreId: Int = 0) {
+    fun getSeries(page: Int, genreId: Int = 0) {
+        isLoading.set(true)
+        failure.set(false)
         job = coroutineScope.launch {
             val response = iGetSeriesByGenreUseCase.invoke(page, genreId)
             withContext(Dispatchers.Main) {
+                isLoading.set(false)
                 when (response) {
                     is Resource.Success -> {
                         series.value = response.value
                     }
                     is Resource.Failure -> {
-
+                        failure.set(true)
+                        return@withContext
                     }
                 }
             }

@@ -4,6 +4,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="type"
             type="String" />
@@ -11,19 +13,29 @@
         <variable
             name="onclick"
             type="com.instaleap.netflixapp.handlers.INavigateToList" />
+
+
+        <variable
+            name="viewModel"
+            type="com.instaleap.netflixapp.viewmodels.MovieByGenreViewModel" />
+
+
+        <variable
+            name="research"
+            type="com.instaleap.netflixapp.fragments.IResearch" />
+
     </data>
 
     <androidx.core.widget.NestedScrollView xmlns:bind="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fillViewport="true"
         android:orientation="vertical"
         tools:context=".fragments.fragmentMovies">
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-
-            xmlns:tools="http://schemas.android.com/tools"
+        <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -34,16 +46,26 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:orientation="vertical"
+                android:visibility="@{viewModel.isLoading ? View.GONE : View.VISIBLE}"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/include_toolbar"
                 app:spanCount="3"
-                tools:listitem="@layout/portada_item"
+                tools:listitem="@layout/portada_item" />
 
-                />
-
+            <include
+                layout="@layout/error_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:isFailure="@{viewModel.failure}"
+                app:isVisible="@{viewModel.isLoading}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:research="@{research}" />
 
             <include
                 android:id="@+id/include_toolbar"

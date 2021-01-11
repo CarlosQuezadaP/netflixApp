@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.instaleap.netflixapp.R
 import com.instaleap.netflixapp.activities.ListActivity
+import com.instaleap.netflixapp.adapters.MoviesAdapter
 import com.instaleap.netflixapp.adapters.SeriesAdapter
 import com.instaleap.netflixapp.databinding.FragmentSeriesBinding
 import com.instaleap.netflixapp.handlers.INavigateToList
@@ -28,7 +29,7 @@ private const val REQUEST_CODE = 222
 private const val DATA_ID = "ID"
 private const val DATA_NAME = "GENRE_NAME"
 
-class FragmentSeries : Fragment(), INavigateToList, View.OnClickListener, OnserieClick {
+class FragmentSeries : Fragment(), INavigateToList, View.OnClickListener, OnserieClick, IResearch {
 
     private val viewModelSeries: SeriesViewModels by viewModel()
     private lateinit var fragmentSeriesBinding: FragmentSeriesBinding
@@ -47,29 +48,43 @@ class FragmentSeries : Fragment(), INavigateToList, View.OnClickListener, Onseri
         )
 
         fragmentSeriesBinding.apply {
+            viewModel = viewModelSeries
             onclick = this@FragmentSeries
+            research = this@FragmentSeries
             type = getString(R.string.series)
-            root.include_toolbar.textView_tipe_text.text = getString(R.string.series)
-            root.include_toolbar.imageViewNetflix.setOnClickListener(
-                this@FragmentSeries
-            )
-
+            root.apply {
+                include_toolbar.textView_tipe_text.text = getString(R.string.series)
+                include_toolbar.imageViewNetflix.setOnClickListener(
+                    this@FragmentSeries
+                )
+            }
         }
-
 
         return fragmentSeriesBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setAdapter()
+        setupAdapter()
         getSeries()
     }
 
-    private fun setAdapter() {
+
+
+
+    private fun setupAdapter() {
         seriesAdapter = SeriesAdapter(this)
-        fragmentSeriesBinding.recyclerView.adapter = seriesAdapter
+        fragmentSeriesBinding.recyclerView.apply {
+            adapter = seriesAdapter
+            postponeEnterTransition()
+            viewTreeObserver
+                .addOnPreDrawListener {
+                    startPostponedEnterTransition()
+                    true
+                }
+        }
     }
+
 
     private fun getSeries() {
         viewModelSeries.apply {
@@ -79,6 +94,9 @@ class FragmentSeries : Fragment(), INavigateToList, View.OnClickListener, Onseri
             })
         }
     }
+
+
+
 
     override fun onClick(type: String) {
         startActivityForResult(Intent(requireContext(), ListActivity::class.java), REQUEST_CODE)
@@ -115,4 +133,7 @@ class FragmentSeries : Fragment(), INavigateToList, View.OnClickListener, Onseri
         Navigation.findNavController(view).navigate(action)
     }
 
+    override fun research() {
+        getSeries()
+    }
 }

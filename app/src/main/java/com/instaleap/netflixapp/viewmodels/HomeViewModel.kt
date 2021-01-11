@@ -1,5 +1,7 @@
 package com.instaleap.netflixapp.viewmodels
 
+import androidx.databinding.ObservableBoolean
+import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.instaleap.core.Resource
@@ -17,27 +19,33 @@ class HomeViewModel(
 ) : ViewModel() {
 
     var sections = MutableLiveData<List<SectionModel>>()
+    var isLoading = ObservableBoolean()
+    var failure = ObservableBoolean()
     private var job: Job? = null
     private var coroutineScope = CoroutineScope(Dispatchers.IO)
+    val characterModel = ObservableField<CharacterModel>()
 
     init {
         getSections()
     }
 
-    private fun getSections() {
+    fun getSections() {
+        isLoading.set(true)
+        failure.set(false)
         job = coroutineScope.launch {
             val responseMovies = iGetPopularMoviesUseCase.invoke(1)
             val responseSeries = iGetPopularSeriesUseCase.invoke(1)
             withContext(Dispatchers.Main) {
+                isLoading.set(false)
                 var movies = listOf<MovieItemDomain>()
                 var series = listOf<SerieDomain>()
-
                 when (responseMovies) {
                     is Resource.Success -> {
                         movies = responseMovies.value
                     }
                     is Resource.Failure -> {
-
+                        failure.set(true)
+                        return@withContext
                     }
                 }
 
@@ -50,6 +58,7 @@ class HomeViewModel(
                     }
                 }
                 sections.value = generate(movies, series)
+                characterModel.set(sections.value?.get(0)?.characters?.get(0))
             }
         }
     }

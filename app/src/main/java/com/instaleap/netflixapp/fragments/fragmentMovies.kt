@@ -27,7 +27,7 @@ private const val REQUEST_CODE = 222
 private const val DATA_ID = "ID"
 private const val DATA_NAME = "GENRE_NAME"
 
-class fragmentMovies : Fragment(), INavigateToList, View.OnClickListener, OnMovieClick {
+class fragmentMovies : Fragment(), INavigateToList, View.OnClickListener, OnMovieClick, IResearch {
 
     private val movieByGenreViewModel: MovieByGenreViewModel by inject()
     private lateinit var fragmentMoviesBinding: FragmentMoviesBinding
@@ -46,7 +46,9 @@ class fragmentMovies : Fragment(), INavigateToList, View.OnClickListener, OnMovi
         )
 
         fragmentMoviesBinding.apply {
+            viewModel = movieByGenreViewModel
             onclick = this@fragmentMovies
+            research = this@fragmentMovies
             type = getString(R.string.movie)
             root.apply {
                 include_toolbar.imageViewNetflix.setOnClickListener(this@fragmentMovies)
@@ -123,5 +125,8 @@ class fragmentMovies : Fragment(), INavigateToList, View.OnClickListener, OnMovi
         Navigation.findNavController(view).navigate(action)
     }
 
+    override fun research() {
+        getMovies()
+    }
 
 }

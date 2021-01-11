@@ -18,4 +18,6 @@
     <string name="movie">Movie</string>
     <string name="series">Series</string>
     <string name="serie">Serie</string>
+    <string name="no_es_posible_conectarse_con_netflix">No es posible conectarse con Netflix</string>
+    <string name="reintentarlo">Reintentarlo</string>
 </resources>
