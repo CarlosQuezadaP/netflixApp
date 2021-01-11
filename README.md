@@ -39,6 +39,8 @@ Modulo encargado de interactuar con el hardware del dispositivo.
 7) dato
 Modulos 
 
+![Diagrama de arquitectura](https://user-images.githubusercontent.com/37455842/104227158-f7e62180-5416-11eb-92b2-a97cf8e3327b.jpeg)
+
 ### Patrones de diseño involucrados
 1) Patron Handler
 2) Patron repository
