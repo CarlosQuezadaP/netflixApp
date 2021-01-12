@@ -85,7 +85,15 @@ dependencies {
     api(project(":dato"))
     api(project(":hardware"))
     api(project(":usecases"))
-    testImplementation(Deps.junit)
-    androidTestImplementation(Deps.junit2)
-    androidTestImplementation(Deps.espresso)
+
+
+    androidTestImplementation(Deps.Tests.test_ext_junit)
+    androidTestImplementation(Deps.Tests.junit)
+    androidTestImplementation(Deps.Tests.test_rules)
+    androidTestImplementation(Deps.Tests.test_runner)
+    androidTestImplementation(Deps.Tests.espresso_espresso)
+    androidTestImplementation(Deps.Tests.test_espresso)
+    testImplementation(Deps.Mockito.mockito_inline)
+    testImplementation(Deps.Mockito.mockito_core)
+
 }

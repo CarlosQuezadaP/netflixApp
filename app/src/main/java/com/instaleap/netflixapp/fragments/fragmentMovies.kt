@@ -11,11 +11,14 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.transition.TransitionInflater
 import com.instaleap.netflixapp.R
 import com.instaleap.netflixapp.activities.ListActivity
 import com.instaleap.netflixapp.adapters.MoviesAdapter
 import com.instaleap.netflixapp.databinding.FragmentMoviesBinding
 import com.instaleap.netflixapp.handlers.INavigateToList
+import com.instaleap.netflixapp.handlers.IResearch
 import com.instaleap.netflixapp.handlers.OnMovieClick
 import com.instaleap.netflixapp.viewmodels.MovieByGenreViewModel
 import kotlinx.android.synthetic.main.custom_toolbar_movies_series.view.*
@@ -51,17 +54,19 @@ class fragmentMovies : Fragment(), INavigateToList, View.OnClickListener, OnMovi
             research = this@fragmentMovies
             type = getString(R.string.movie)
             root.apply {
-                include_toolbar.imageViewNetflix.setOnClickListener(this@fragmentMovies)
-                include_toolbar.textView_tipe_text.text = "Películas"
+                include_toolbar_movies.imageViewNetflix.setOnClickListener(this@fragmentMovies)
+                include_toolbar_movies.textView_tipe_text.text = "Películas"
             }
         }
+
 
         return fragmentMoviesBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        setExitToFullScreenTransition()
+        setReturnFromFullScreenTransition()
         setupAdapter()
         getMovies()
     }
@@ -70,12 +75,14 @@ class fragmentMovies : Fragment(), INavigateToList, View.OnClickListener, OnMovi
         moviesAdapter = MoviesAdapter(this)
         fragmentMoviesBinding.recyclerViewMovies.apply {
             adapter = moviesAdapter
+
+            setHasFixedSize(true)
+
             postponeEnterTransition()
-            viewTreeObserver
-                .addOnPreDrawListener {
-                    startPostponedEnterTransition()
-                    true
-                }
+            viewTreeObserver.addOnPreDrawListener {
+                startPostponedEnterTransition()
+                true
+            }
         }
 
     }
@@ -109,7 +116,7 @@ class fragmentMovies : Fragment(), INavigateToList, View.OnClickListener, OnMovi
     }
 
     private fun updateGenreName(genreName: String) {
-        fragmentMoviesBinding.root.include_toolbar.textView_tipe_text.text = genreName
+        fragmentMoviesBinding.includeToolbarMovies.textViewGenresText.text = genreName
     }
 
     override fun onClick(v: View?) {
@@ -127,6 +134,18 @@ class fragmentMovies : Fragment(), INavigateToList, View.OnClickListener, OnMovi
 
     override fun research() {
         getMovies()
+    }
+
+    private fun setExitToFullScreenTransition() {
+        exitTransition =
+            TransitionInflater.from(context)
+                .inflateTransition(R.transition.list_exit_transition)
+    }
+
+    private fun setReturnFromFullScreenTransition() {
+        reenterTransition =
+            TransitionInflater.from(context)
+                .inflateTransition(R.transition.list_return_transition)
     }
 
 }

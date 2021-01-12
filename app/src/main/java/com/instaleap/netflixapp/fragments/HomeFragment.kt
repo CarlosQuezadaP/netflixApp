@@ -11,6 +11,7 @@ import com.instaleap.netflixapp.R
 import com.instaleap.netflixapp.adapters.MainSectionAdapter
 import com.instaleap.netflixapp.databinding.FragmentHomeBinding
 import com.instaleap.netflixapp.handlers.IClickHomeImage
+import com.instaleap.netflixapp.handlers.IResearch
 import com.instaleap.netflixapp.handlers.OnClickHomeItemSection
 import com.instaleap.netflixapp.viewmodels.HomeViewModel
 import kotlinx.android.synthetic.main.custom_toolbar_main.view.*
@@ -41,7 +42,7 @@ class HomeFragment : Fragment(), View.OnClickListener, OnClickHomeItemSection, I
         homeFragmentBinding.apply {
             viewModel = homeViewModel
             root.textView_movies_text.setOnClickListener(this@HomeFragment)
-            root.textView_series_text.setOnClickListener(this@HomeFragment)
+            root.textView_genres_text.setOnClickListener(this@HomeFragment)
             root.textView_reintent.setOnClickListener(this@HomeFragment)
             homeFragmentBinding.onClickImage = this@HomeFragment
             homeFragmentBinding.research = this@HomeFragment
@@ -71,7 +72,7 @@ class HomeFragment : Fragment(), View.OnClickListener, OnClickHomeItemSection, I
             R.id.textView_movies_text -> {
                 Navigation.findNavController(v).navigate(R.id.fragmentMovies)
             }
-            R.id.textView_series_text -> {
+            R.id.textView_genres_text -> {
                 Navigation.findNavController(v).navigate(R.id.fragmentSeries)
             }
             R.id.textView_reintent -> {

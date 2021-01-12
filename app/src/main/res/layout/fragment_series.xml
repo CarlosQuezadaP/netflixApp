@@ -22,7 +22,7 @@
 
         <variable
             name="research"
-            type="com.instaleap.netflixapp.fragments.IResearch" />
+            type="com.instaleap.netflixapp.handlers.IResearch" />
 
     </data>
 
@@ -50,7 +50,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/include_toolbar"
+                app:layout_constraintTop_toBottomOf="@+id/include_toolbar_series"
                 app:spanCount="3"
                 tools:listitem="@layout/portada_item" />
 
@@ -70,7 +70,7 @@
                 />
 
             <include
-                android:id="@+id/include_toolbar"
+                android:id="@+id/include_toolbar_series"
                 layout="@layout/custom_toolbar_movies_series"
                 app:onclick="@{onclick}"
                 app:type="@{type}" />

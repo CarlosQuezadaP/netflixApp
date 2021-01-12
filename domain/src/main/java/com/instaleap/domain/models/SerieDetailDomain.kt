@@ -1,7 +1,8 @@
 package com.instaleap.domain.models
 
 data class SerieDetailDomain(
-    val backdrop_path: String,
+    val backdrop_path: String?,
+    val poster_path: String?,
     val episode_run_time: List<Int>,
     val first_air_date: String,
     val genres: List<GenreItemDomain>,
@@ -18,7 +19,6 @@ data class SerieDetailDomain(
     val original_name: String,
     val overview: String,
     val popularity: Double,
-    val poster_path: String,
     val status: String,
     val tagline: String,
     val type: String,

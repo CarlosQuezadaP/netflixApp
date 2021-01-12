@@ -3,7 +3,8 @@ package com.instaleap.dato.responses.serieDetailResponse
 import com.instaleap.domain.models.GenreItemDomain
 
 data class SerieDetailDto(
-    val backdrop_path: String,
+    val backdrop_path: String?,
+    val poster_path: String?,
     val created_by: List<Any>,
     val episode_run_time: List<Int>,
     val first_air_date: String,
@@ -24,7 +25,6 @@ data class SerieDetailDto(
     val original_name: String,
     val overview: String,
     val popularity: Double,
-    val poster_path: String,
     val seasons: List<Season>,
     val status: String,
     val tagline: String,

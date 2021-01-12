@@ -12,15 +12,13 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.instaleap.netflixapp.R
 import com.instaleap.netflixapp.activities.ListActivity
-import com.instaleap.netflixapp.adapters.MoviesAdapter
 import com.instaleap.netflixapp.adapters.SeriesAdapter
 import com.instaleap.netflixapp.databinding.FragmentSeriesBinding
 import com.instaleap.netflixapp.handlers.INavigateToList
+import com.instaleap.netflixapp.handlers.IResearch
 import com.instaleap.netflixapp.handlers.OnserieClick
 import com.instaleap.netflixapp.viewmodels.SeriesViewModels
 import kotlinx.android.synthetic.main.custom_toolbar_movies_series.view.*
-import kotlinx.android.synthetic.main.fragment_movies.view.*
-import kotlinx.android.synthetic.main.fragment_movies.view.include_toolbar
 import kotlinx.android.synthetic.main.fragment_series.*
 import kotlinx.android.synthetic.main.fragment_series.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -53,8 +51,8 @@ class FragmentSeries : Fragment(), INavigateToList, View.OnClickListener, Onseri
             research = this@FragmentSeries
             type = getString(R.string.series)
             root.apply {
-                include_toolbar.textView_tipe_text.text = getString(R.string.series)
-                include_toolbar.imageViewNetflix.setOnClickListener(
+                include_toolbar_series.textView_tipe_text.text = getString(R.string.series)
+                include_toolbar_series.imageViewNetflix.setOnClickListener(
                     this@FragmentSeries
                 )
             }
@@ -68,9 +66,6 @@ class FragmentSeries : Fragment(), INavigateToList, View.OnClickListener, Onseri
         setupAdapter()
         getSeries()
     }
-
-
-
 
     private fun setupAdapter() {
         seriesAdapter = SeriesAdapter(this)
@@ -117,7 +112,7 @@ class FragmentSeries : Fragment(), INavigateToList, View.OnClickListener, Onseri
     }
 
     private fun updateGenreName(genreName: String) {
-        fragmentSeriesBinding.root.include_toolbar.textView_series_text.text = genreName
+        fragmentSeriesBinding.root.include_toolbar_series.textView_genres_text.text = genreName
     }
 
     override fun onClick(v: View?) {

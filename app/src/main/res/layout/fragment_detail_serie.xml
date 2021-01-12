@@ -104,6 +104,27 @@
                         android:layout_marginTop="8dp"
                         android:rating="@{viewModelDetailSerie.serieDetail.vote_average / 2}"
                         tools:rating="3.5f" />
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="23dp"
+                        android:text="Summary"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/detail_body_summary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="@{viewModelDetailSerie.serieDetail.overview}"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        tools:text="Summary" />
+
                 </LinearLayout>
 
             </LinearLayout>
