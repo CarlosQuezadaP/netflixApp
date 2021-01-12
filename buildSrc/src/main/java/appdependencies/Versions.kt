@@ -39,6 +39,8 @@ object Versions {
         const val espresso = "3.3.0"
     }
 
+    const val mockito = "3.1.0"
+    const val mockito_inline = "2.13.0"
 
     object AndroidV {
         const val compileSdkVersion = 30
@@ -56,6 +58,13 @@ object Versions {
     const val swipeRefresh = "1.0.0"
     const val paging = "2.1.1"
     const val glide = "4.8.0"
+
+    const val junit = "4.12"
+    const val test_ext = "1.1.1"
+    const val test_rules = "1.3.0"
+    const val espresso = "3.3.0"
+
+
 
 
 }

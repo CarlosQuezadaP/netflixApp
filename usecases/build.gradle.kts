@@ -34,10 +34,21 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    
 }
 
 dependencies {
     implementation(appdependencies.Deps.Koin.koin)
     api(project(":domain"))
     api(project(":core"))
+
+    testImplementation(appdependencies.Deps.Tests.junit)
+    androidTestImplementation(appdependencies.Deps.Tests.test_ext_junit)
+    androidTestImplementation(appdependencies.Deps.Tests.test_rules)
+    androidTestImplementation(appdependencies.Deps.Tests.test_runner)
+    androidTestImplementation(appdependencies.Deps.Tests.espresso_espresso)
+    androidTestImplementation(appdependencies.Deps.Tests.test_espresso)
+    testImplementation(appdependencies.Deps.Mockito.mockito_inline)
+    testImplementation(appdependencies.Deps.Mockito.mockito_core)
 }

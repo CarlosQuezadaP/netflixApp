@@ -19,7 +19,6 @@ object Deps {
 
     const val material = "com.google.android.material:material:${Versions.material}"
 
-    const val junit = "junit:junit:4.+:${Versions.Test.junit}}"
     const val junit2 = "androidx.test.ext:junit:1.1.2:${Versions.Test.junit_test}"
     const val espresso = "androidx.test.espresso:espresso-core:3.3.0:${Versions.Test.espresso}"
 
@@ -58,6 +57,21 @@ object Deps {
         // view model saved state handler
         const val savedStateViewModel =
             "androidx.lifecycle:lifecycle-viewmodel-savedstate:${Versions.savedstate}"
+    }
+
+
+    object Tests {
+        const val junit = "junit:junit:${Versions.junit}"
+        const val test_ext_junit = "androidx.test.ext:junit:${Versions.test_ext}"
+        const val test_rules = "androidx.test:rules:${Versions.test_rules}"
+        const val test_runner = "androidx.test:runner:${Versions.test_rules}"
+        const val test_espresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
+        const val espresso_espresso = "androidx.test.espresso:espresso-contrib:${Versions.espresso}"
+    }
+
+    object Mockito {
+        const val mockito_core = "org.mockito:mockito-core:${Versions.mockito}"
+        const val mockito_inline = "org.mockito:mockito-inline:${Versions.mockito_inline}"
     }
 
     object Core {
