@@ -56,3 +56,10 @@ Modulos
 4) Modulos con alta cohesion Bajo acoplamiento
 5. Principio de menor conocimiento
 
+# Capturas de pantalla
+![Screenshot_1610434797](https://user-images.githubusercontent.com/37455842/104280663-48429b00-547a-11eb-90f2-6101b751fdc7.png)
+![Screenshot_1610434805](https://user-images.githubusercontent.com/37455842/104280679-4ed11280-547a-11eb-90af-1641a38e6e95.png)
+![Screenshot_1610434809](https://user-images.githubusercontent.com/37455842/104280691-5395c680-547a-11eb-86cd-1637c53ab26b.png)
+![Screenshot_1610434821](https://user-images.githubusercontent.com/37455842/104280696-555f8a00-547a-11eb-850f-54cc420705a4.png)
+![Screenshot_1610434928](https://user-images.githubusercontent.com/37455842/104280712-58f31100-547a-11eb-83a8-fa67f033df82.png)
+
